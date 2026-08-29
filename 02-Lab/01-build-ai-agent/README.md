@@ -1,6 +1,6 @@
 # 02 — Lab 1: Build a Business Request AI Agent
 
-[← Previous: Introduction](../01-introduction/README.md) · [Home](../README.md) · [Next: Lab 2 →](../../02-build-agentic-workflow/README.md)
+[← Previous: Introduction](../../01-introduction/README.md) · [Home](../../README.md) · [Next: Lab 2 →](../02-build-agentic-workflow/README.md)
 
 🎯 **Goal**  สร้าง `Business Request Assistant` ใน Google AI Studio เพื่อสรุป จัด Priority อธิบายเหตุผล และแนะนำ Next Action
 
