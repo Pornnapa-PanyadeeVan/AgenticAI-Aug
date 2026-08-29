@@ -222,7 +222,7 @@ Improve from Feedback
 
 | องค์ประกอบ | หน้าที่และตัวอย่างใน Workshop |
 |---|---|
-| Workflow / Agent Plan | ประสานลำดับ execution เช่น Make Scenario หรือ Manus execution plan |
+| Workflow / Agent Plan | ประสานลำดับ execution เช่น Make Scenario หรือ Antigravity agent plan |
 | Tool | ความสามารถที่ระบบเรียกใช้ เช่น Parse JSON, `Add a row`, create report |
 | Connector / API | เชื่อมระบบพร้อม authentication และ permission |
 | MCP | มาตรฐานสำหรับค้นพบ Resources, Prompts และ Tools จาก Server; Labs หลักไม่ติดตั้ง MCP Server |
@@ -279,7 +279,7 @@ Autonomy หรือระดับความเป็นอิสระค�
 | เปลี่ยน process ต้องแก้ workflow | Agent อาจปรับแผนตาม context |
 | เหมาะกับงานซ้ำและ policy ชัด | เหมาะกับงานวิเคราะห์หลายขั้นที่มีขอบเขตและตรวจสอบได้ |
 
-ใน Lab 2–3 ผู้เรียนจะประกอบ Workflow เอง ส่วน Lab 4 จะให้ Manus Agent รับ Goal และ dataset เดียวกันแล้ววางแผนทำ triage กับ management report โดยไม่สร้าง Workflow ผู้เรียนต้องสังเกตว่าเมื่อความเป็นอิสระเพิ่มขึ้น boundary, approval, evidence และ validation ต้องเข้มขึ้นอย่างไร
+ใน Lab 2–3 ผู้เรียนจะประกอบ Workflow เอง ส่วน Lab 4 จะให้ Google Antigravity รับ Goal และ dataset เดียวกัน แล้ววางแผนสร้าง management report หนึ่งไฟล์โดยไม่สร้าง Workflow ผู้เรียนต้องสังเกต boundary, approval และ evidence ของ Agent
 
 ## 8. Learning Path: จาก Gen AI ไปสู่ Agentic AI
 
@@ -314,7 +314,7 @@ Autonomy หรือระดับความเป็นอิสระค�
 | Generative AI → AI Agent → Agent + Rules | Lab 1: Business Request Assistant |
 | Workflow → Decision → Action → Data / Memory | Lab 2: Make + Gemini Workflow |
 | Management Report → Insight → Human Decision | Lab 3: Managerial AI Report |
-| Agent วางแผนงานภายในขอบเขต | Lab 4: Manus AI comparison |
+| Agent วางแผนงานภายในขอบเขต | Lab 4: Google Antigravity comparison |
 
 ## 9. Case Study: Business Request Management
 

@@ -56,7 +56,7 @@ Input Rules
 
 ### Agent Mode
 
-โหมดที่ระบบวางแผนและทำ multi-step task มากกว่าการตอบข้อความหนึ่งครั้ง ชื่อและความสามารถต่างกันตามผลิตภัณฑ์ ใน Lab 4 ใช้ Manus Agent Mode เท่าที่ Free plan เปิดให้
+โหมดที่ระบบวางแผนและทำ multi-step task มากกว่าการตอบข้อความหนึ่งครั้ง ชื่อและความสามารถต่างกันตามผลิตภัณฑ์ ใน Lab 4 ใช้ Google Antigravity ทำงานหนึ่งงานภายใน local project ที่จำกัดขอบเขต
 
 ### Agentic AI
 
@@ -221,7 +221,7 @@ Skill อาจประกอบด้วย:
 - Validation checklist
 - Script/Tool guidance
 
-คำว่า Skill ไม่ใช่มาตรฐานเดียวกันทุกแพลตฟอร์ม บางระบบใช้คำว่า capability, playbook, template หรือ reusable instruction แทน ใน Workshop นี้ไม่บังคับสร้าง Manus Skill; Lab 4 ใช้ Prompt + dataset เพื่อให้เห็นแนวคิดก่อน
+คำว่า Skill ไม่ใช่มาตรฐานเดียวกันทุกแพลตฟอร์ม บางระบบใช้คำว่า capability, playbook, template หรือ reusable instruction แทน ใน Workshop นี้ไม่บังคับสร้าง Skill; Lab 4 ใช้ Prompt + dataset เพื่อให้เห็นแนวคิดก่อน
 
 ### System Instructions
 

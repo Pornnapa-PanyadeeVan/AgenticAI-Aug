@@ -1,39 +1,37 @@
 # Lab 4 — Google Antigravity Prompts
 
-[← Lab 4 Guide](README.md) · [Home](../README.md) · [Next: Responsible AI →](../07-responsible-agentic-ai/README.md)
+[← Lab 4 Guide](README.md) · [Home](../../README.md)
 
-ใช้ prompts นี้กับ [Antigravity Lab Input](../templates/antigravity-lab-input.md) ภายใน dedicated local project เท่านั้น ห้ามใช้ข้อมูลจริง
+ใช้ Prompt นี้กับ [business-requests.md](../templates/business-requests.md) ภายใน dedicated local project เท่านั้น ห้ามใช้ข้อมูลจริง
 
 ## Primary Agent Task Prompt
 
 ```text
 You are a bounded Business Request Management Agent working inside one local project.
 
-Goal:
-Analyze the simulated business requests in input/business-requests.md,
-triage every request using business-impact rules,
-and create a draft Situation & Follow-up Report for every HIGH request.
+Complete ONE end-to-end task:
+Read the simulated requests in input/business-requests.md and create one
+Thai management report at:
+outputs/business-request-management-report.md
 
 Project boundary:
 - Read only input/business-requests.md.
-- Create or modify files only under outputs/.
+- Create or modify only outputs/business-request-management-report.md.
 - Do not modify the input file.
 - Do not access files outside this project.
+- Do not create any other output file.
 
 Prohibited actions:
 - Do not browse the web or open external URLs.
-- Do not use connectors, MCP servers, MCP tools, plugins, or external APIs.
-- Do not create a Make workflow, automation, application, webhook,
-  scheduled task, email, message, alert, or external action.
-- Do not install packages or change system/project configuration.
-- Do not use subagents or multi-agent teamwork.
+- Do not use connectors, MCP, plugins, external APIs, or subagents.
+- Do not use terminal commands or install packages.
+- Do not create a workflow, app, schedule, email, message, alert,
+  or any external action.
 
 Approval gate:
-First create a concise implementation plan and task list with no more than 5 steps.
-State which input file you will read and which output files you intend to create.
-Do not create or modify output files until a human explicitly approves the plan.
-Do not reveal hidden chain-of-thought; show only the concise plan, decisions,
-source evidence, actions, and validation results needed for review.
+Before writing the report, show a concise plan with no more than 3 bullets.
+State the exact input and output paths and then wait for human approval.
+Do not reveal hidden chain-of-thought.
 
 Priority rules:
 
@@ -59,176 +57,83 @@ LOW:
 Do not classify HIGH only because a request says urgent, ASAP,
 immediately, ด่วน, ทันที, or similar words.
 
-After human approval, create these required Thai deliverables under outputs/:
+After approval, create one report with these sections:
 
-1. 01-request-triage.md
-- Exactly one row for every input Request ID.
-- Columns: Request ID, Department, Summary, Priority, Reason,
-  Recommended Action, Human Review, Missing Information.
-- Priority must be exactly HIGH, MEDIUM, or LOW.
+# DRAFT — Business Request Management Report — HUMAN REVIEW REQUIRED
 
-2. DRAFT-HIGH-Situation-Report-[Request-ID].md
-- Create exactly one report per HIGH Request ID.
-- Do not create a report for MEDIUM or LOW.
-- Include:
-  DRAFT — HIGH PRIORITY — HUMAN REVIEW REQUIRED;
-  Request ID, Department, Source Priority;
-  Situation Overview;
-  evidence-based Customer, Financial/Revenue, Operations,
-  Compliance/Reputation and Time-Sensitivity impact;
-  Why HIGH;
-  Immediate Attention recommendations pending human confirmation;
-  Follow-up table;
-  Decisions/Approvals Required;
-  Missing Information;
-  Human Review Sign-off.
-- Follow-up table columns:
+## 1. Request Triage
+Create exactly one row for every input Request ID.
+Columns:
+Request ID | Department | Summary | Priority | Reason |
+Recommended Action | Human Review | Missing Information
+
+Priority must be exactly HIGH, MEDIUM, or LOW.
+Recommended actions are proposals only; do not claim they were performed.
+
+## 2. HIGH Situation & Follow-up
+Create a subsection only for each request classified as HIGH.
+Do not create detailed follow-up sections for MEDIUM or LOW.
+
+Each HIGH subsection must include:
+- DRAFT — HIGH PRIORITY — HUMAN REVIEW REQUIRED
+- Request ID and source priority
+- Situation summary and evidence-based impact
+- Why the request is HIGH
+- Recommended immediate attention pending human confirmation
+- Missing information
+- Follow-up table:
   Follow-up Item | Proposed Owner | Target Time | Status | Evidence/Source
-- Unknown owner = Manager to assign.
-- Unknown target time = Manager to confirm.
-- Status = OPEN or PENDING VALIDATION; never RESOLVED.
-- Use "ไม่พบในข้อมูลต้นทาง" when evidence is unavailable.
+- Human Review Sign-off
 
-3. 03-high-follow-up-index.md
-- Request ID
-- Report filename
-- Report Status = DRAFT — HUMAN REVIEW REQUIRED
-- Follow-up Status = OPEN
-- Owner = Manager to assign
-- Target Time = Manager to confirm
+Use "Manager to assign" when the source does not provide an owner.
+Use "Manager to confirm" when the source does not provide a target time.
+Use OPEN or PENDING VALIDATION as status; never use RESOLVED.
+Use "ไม่พบในข้อมูลต้นทาง" when evidence is unavailable.
 
-4. 04-validation-summary.md
-Validate and report:
-- input record count versus triage row count;
-- duplicate or missing Request IDs;
-- HIGH + MEDIUM + LOW versus total;
-- urgent-keyword false positives;
-- HIGH report count versus HIGH triage row count;
-- missing, duplicate, or extra HIGH reports;
-- unsupported claims or invented facts;
-- files created or modified;
-- whether any prohibited action was attempted or performed.
+## 3. Quick Self-check
+State briefly:
+- input record count and triage row count;
+- HIGH, MEDIUM, and LOW counts;
+- HIGH Request IDs that received follow-up sections;
+- whether urgent words were used as the only reason for HIGH;
+- confirmation that no external action was performed.
 
-Do not invent facts, counts, amounts, root causes, owner names,
+Do not invent facts, counts, monetary values, root causes, owner names,
 deadlines, policies, SLAs, actions already taken, or resolution status.
 
-Optional PDF:
-- Create a PDF only when an existing local capability can do so
-  without installing packages or accessing the network.
-- Ask for human approval before any terminal command.
-- If PDF creation is not safely available, create a print-ready HTML copy
-  named DRAFT-HIGH-Situation-Report-[Request-ID].html for each HIGH report
-  and record "PDF NOT CREATED — SAFE FALLBACK USED"
-  in 04-validation-summary.md.
-
-Finish with a concise walkthrough listing the plan completed,
-deliverables created, validation result, and remaining Human Review items.
+Respond in Thai.
 ```
 
 ## Plan Approval Response
 
-ใช้เมื่อ plan ถูกต้อง:
+ใช้เมื่อ Plan ระบุ input/output และ boundary ถูกต้อง:
 
 ```text
 Proceed with the reviewed plan.
 
-Keep all stated boundaries:
-- read only input/business-requests.md;
-- write only under outputs/;
-- no web, external URLs, connectors, MCP, schedule, messages,
-  package installation, external action, subagents, or teamwork mode;
-- request approval before any terminal command;
-- keep all HIGH reports as DRAFT and OPEN/PENDING VALIDATION.
-
-Stop and ask if any required action would exceed these boundaries.
+Read only input/business-requests.md and create only
+outputs/business-request-management-report.md.
+Keep all other stated boundaries and stop if the task would exceed them.
 ```
 
 ## Boundary Correction Prompt
 
-```text
-Stop the current execution and return to the reviewed project boundary.
+ใช้เมื่อ Agent วางแผนเกินขอบเขตหรือ report ไม่ผ่านข้อสำคัญ:
 
-Do not browse, open external URLs, use connectors or MCP,
-install packages, start subagents, create an app/workflow/schedule,
-send messages, or access files outside this project.
+```text
+Return to the approved project boundary.
 
 Use only input/business-requests.md.
-Create or correct only the approved files under outputs/.
-Do not modify the source file.
+Create or correct only outputs/business-request-management-report.md.
+Do not create additional files or use web, connectors, MCP, terminal,
+packages, subagents, schedules, messages, or external actions.
 
-Before continuing, show the corrected plan and wait for human approval.
-```
+Correct only these issues in the existing report:
+{{LIST_THE_IMPORTANT_ISSUES}}
 
-## Validation Prompt
-
-```text
-Validate the existing project deliverables without starting a new analysis
-and without using the network, connectors, MCP, package installation,
-subagents, schedule, or external actions.
-
-Read input/business-requests.md and the existing files under outputs/.
-Do not modify the input file.
-
-Check:
-- input record count versus triage row count;
-- duplicate or missing Request IDs;
-- priorities outside HIGH, MEDIUM, LOW;
-- whether urgent words were the only reason for HIGH;
-- HIGH + MEDIUM + LOW versus total;
-- HIGH report count versus HIGH triage row count;
-- missing, duplicate, or extra HIGH reports;
-- reports created for MEDIUM or LOW;
-- claims without source evidence;
-- invented root cause, amount, owner, deadline, SLA, policy, or resolution;
-- missing DRAFT/Human Review labels;
-- follow-up status other than OPEN/PENDING VALIDATION;
-- files outside outputs/ created or modified;
-- prohibited tool or external action attempts.
-
-Update only outputs/04-validation-summary.md and any failing approved
-deliverable under outputs/. Ask before modifying more than these files.
-
-Return a concise pass/fail summary in Thai.
-```
-
-## Compact Prompt — Low-quota Fallback
-
-```text
-Use only input/business-requests.md inside this project.
-Do not use web, URLs, connectors, MCP, packages, subagents, schedule,
-messages, external actions, or files outside this project.
-
-First show a 4-step plan and wait for approval.
-
-After approval, create only under outputs/:
-1. 01-request-triage.md — one row per Request ID;
-2. one DRAFT-HIGH-Situation-Report-[Request-ID].md per HIGH case only;
-3. 03-high-follow-up-index.md;
-4. 04-validation-summary.md.
-
-Use HIGH/MEDIUM/LOW business-impact rules.
-Urgent words alone are not HIGH.
-Do not invent missing facts.
-Unknown owner = Manager to assign.
-Unknown time = Manager to confirm.
-Status = OPEN.
-Validate row count and HIGH report count.
-```
-
-## Reflection Prompt — Do Not Run in Antigravity
-
-ทีมตอบด้วยตนเอง:
-
-```text
-Which parts were specified by humans?
-Which execution steps were planned by the Agent?
-Which tools did the Agent use within the project boundary?
-What evidence supports each HIGH decision?
-Which guardrail was implemented as a prompt, permission, approval, or validation?
-How would a deterministic Make workflow execute and audit the same goal?
-What must remain under human approval?
+Keep the report as DRAFT and preserve source Request IDs.
 ```
 
 ---
 
-[← Lab 4 Guide](README.md) · [Home](../README.md) · [Next: Responsible AI →](../07-responsible-agentic-ai/README.md)
+[← Lab 4 Guide](README.md) · [Home](../../README.md)
