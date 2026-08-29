@@ -122,66 +122,29 @@ Current Follow-up Status: OPEN
 ![Output Gemini Lab3](assets/Lab03-4.png)
 
 
-## 📌 Step 5 — Create a Google Document from the Draft
+## 📌 Step 5 — Create a Google Document and Convert to PDF and Upload It
 
 1. คลิก `+` หลัง validation filter
-2. เลือก `Google Drive → Create a File from Text`
+2. เลือก `Google Docs → Create a Document`
 3. ตั้งค่าดังนี้:
 
-| Field | Value |
-|---|---|
-| Connection | บัญชี Google Drive ของตนเอง |
-| Drive | `My Drive` |
-| Folder/Location | `Agentic-AI-Reports/HIGH-Follow-up` |
-| File name | `DRAFT HIGH Situation Report — {{Request ID}} — {{YYYY-MM-DD}}` |
-| Content/Data | text output จาก Report Gemini |
-| Convert to Google Docs | `Yes` |
+![Output Gemini Lab3](assets/Lab03-5-1.png)
 
-Map Request ID จาก `Watch New Rows` และใช้วันที่จาก Make date function หากทำได้
+4. คลิก `+` หลัง Google Docs เลือก `Google Docs → Download a Document`
+5. ตั้งค่าดังนี้:
+![Output Gemini Lab3](assets/Lab03-5-2.png)
 
-![Output Gemini Lab3](assets/Lab03-5.png)
+6. คลิก `+` หลัง Google Docs (Download a Document) เลือก `Google Drive → Upload a File`
+7. ตั้งค่าดังนี้:
 
-⚠️ **Common Problem**  ถ้าได้ไฟล์ `.txt` ให้ตรวจ `Convert to Google Docs = Yes` ถ้าบัญชีไม่มีตัวเลือกนี้ ใช้ `Google Docs → Create a Document` หรือ [Manual Document Fallback](#manual-document-fallback)
+![Output Gemini Lab3](assets/Lab03-5-3.png)
 
-## 📌 Step 6 — Convert to PDF and Upload It
+>ภาพรวม
+![Output Gemini Lab3](assets/Lab03-5-4.png)
 
-### 6.1 Download the Google Document as PDF
 
-1. คลิก `+` หลัง Create a File from Text
-2. เลือก `Google Drive → Download a File`
-3. ที่ File ID map ID จาก module ที่สร้าง Google Document
-4. ที่ conversion/export format เลือก `PDF`
-5. กด `OK`
 
-> 📷 **L3-07 — Download as PDF**: ให้เห็น File ID token และ PDF export format
-
-### 6.2 Upload the PDF
-
-1. คลิก `+` หลัง Download a File
-2. เลือก `Google Drive → Upload a File`
-3. เลือก folder `Agentic-AI-Reports/HIGH-Follow-up`
-4. ตั้งชื่อ `DRAFT-HIGH-Situation-Report-{{Request ID}}-{{YYYY-MM-DD}}.pdf`
-5. Map Request ID จาก Watch New Rows
-6. ที่ File/Data map binary data จาก Download a File
-7. ถ้ามีช่อง MIME type ให้ใช้ `application/pdf`
-8. กด `OK`
-
-> 📷 **L3-08 — Upload PDF**: ให้เห็น restricted folder, dynamic PDF filename และ binary data mapping
-
-### Check the Artifact
-
-1. ทดสอบด้วย HIGH request ใหม่หนึ่งรายการ
-2. เปิด Drive folder และเปิด PDF
-3. เลื่อนตรวจทุกหน้าและตรวจว่าขนาดไฟล์มากกว่า 0 bytes
-4. ตรวจชื่อไฟล์ว่ามี Request ID ของ test row
-5. ตรวจว่าเนื้อหายังมี DRAFT/Human Review label
-6. เปิด Share dialog และยืนยันว่าไฟล์ยัง Restricted
-
-✅ **Checkpoint**  PDF เปิดได้ เชื่อมโยงกลับ Request ID ได้ และยังไม่แสดงว่าเหตุการณ์ RESOLVED
-
-⚠️ **Alternative module path**  ถ้า Google Drive `Download a File` ไม่ให้เลือก PDF ให้ใช้ `Google Docs → Download a Document` แล้วเลือก PDF จากนั้น map binary output เข้า Upload a File
-
-## 📌 Step 7 — Update the Same Request Row
+## 📌 Step 6 — Update the Same Request Row
 
 1. คลิก `+` หลัง Upload a File
 2. เลือก `Google Sheets → Update a Row`
