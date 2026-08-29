@@ -1,26 +1,21 @@
-# Lab 4: Google Antigravity — Solve Lab 2 + Lab 3 without Building a Workflow — Step by Step
+# Lab 4: Google Antigravity 
 
 [← Previous: LINE OA Demo](../03-generate-management-report/) · [Home](../README.md) 
 
 🎯 **Goal**  ให้ Google Antigravity รับ Goal และไฟล์คำร้องจำลอง วางแผนเอง แล้วสร้าง Request Triage กับ DRAFT Situation & Follow-up Report สำหรับทุก HIGH case โดยผู้เรียนไม่ประกอบ Make Workflow ทีละ module
 
-⏱ **Estimated Time**  30 นาที
-
-👥 **Team**  3–4 คน ใช้หนึ่ง local project และหนึ่ง conversation ต่อทีม
-
 🧰 **Tool**  [Google Antigravity 2.0](https://antigravity.google/) แบบ standalone desktop; Antigravity IDE/CLI/SDK ไม่จำเป็นสำหรับ Lab นี้
 
 ผู้เรียนไม่ต้องเขียน code เอง Core lab ใช้ conversation, project settings, plan review และ file artifacts
 
-## วิธีใช้คู่มือนี้
-
-แต่ละ Step บอกให้ครบว่า **คลิกที่ไหน → ตั้งค่าอะไร → ต้องเห็นอะไร → ถ่ายภาพตรงไหน** รหัส `L4-xx` เป็นตำแหน่ง screenshot ที่ผู้สอนนำภาพจริงมาใส่ภายหลังได้ ดูชื่อไฟล์ทั้งหมดที่ [Screenshot Guide](../images/README.md)
-
-คำเรียก UI อ้างอิงจาก [Getting Started with Google Antigravity](https://codelabs.developers.google.com/getting-started-google-antigravity), [Projects](https://antigravity.google/docs/projects/) และ [Artifact Review](https://antigravity.google/docs/artifact-review) ของ Google แต่ตำแหน่งเมนูอาจต่างตามระบบปฏิบัติการและ rollout
-
-> 📷 คู่มืออ่านและทำตามได้ก่อนมีภาพจริง ห้ามใช้ screenshot ที่เปิดเผย path ส่วนตัว, account, email หรือไฟล์งานจริง
 
 ## Antigravity ใน Lab นี้เป็น Agentic AI แบบใด
+
+Google Antigravity คือเครื่องมือ/สภาพแวดล้อมสำหรับสร้างและใช้งาน AI agents ที่ช่วยทำงานหลายขั้นตอนอัตโนมัติ โดยให้ Agent วางแผน ใช้เครื่องมือ และลงมือทำงานแทนผู้ใช้ได้บางส่วน
+
+> “พื้นที่ให้ AI Agent คิด → ทำ → ตรวจผล → ทำต่อ” ไม่ได้แค่ตอบคำถามเหมือน chatbot ทั่วไป
+
+
 
 Lab นี้ใช้ **Bounded Goal-based Workspace Agent for Analysis and Artifact Creation** หรือ Agent แบบรับเป้าหมายที่ทำงานหลายขั้นภายใน project scope ที่จำกัด
 
@@ -38,30 +33,9 @@ Agent validates deliverables and creates Walkthrough
 Human reviews evidence and accepts/rejects changes
 ```
 
+![overview](assets/Lab4-overview.png)
+
 ระดับ autonomy เป็น **ปานกลางและมีขอบเขตชัดเจน**: Agent เลือกลำดับการทำงานและใช้ local file tools เอง แต่คนกำหนด input, allowed outputs, permissions, approval gate และ acceptance criteria
-
-## สิ่งที่ Lab นี้ทำ — และไม่ทำ
-
-### Agent ทำภายใน project เดียว
-
-- อ่านคำร้องจำลอง 4 รายการจากไฟล์ local
-- สร้าง implementation plan และ task list
-- รอ Human Review ก่อนแก้หรือสร้างไฟล์
-- จัด Priority ตาม business impact
-- สร้าง report เฉพาะ HIGH cases
-- สร้าง follow-up index และ validation summary
-- สรุปสิ่งที่ทำใน walkthrough/artifacts
-
-### Lab นี้ไม่ทำ
-
-- ไม่สร้าง Make Scenario, automation หรือ application
-- ไม่เปิด browser, web research หรือ URL ภายนอก
-- ไม่ใช้ scheduled task หรือ background automation
-- ไม่เชื่อม Google Sheets, Drive, Gmail, LINE หรือ production system
-- ไม่เปิด Connector หรือ MCP Server
-- ไม่ติดตั้ง package และไม่ใช้ paid-only multi-agent/teamwork feature
-- ไม่ส่ง email, alert, message หรือเปลี่ยนข้อมูลภายนอก
-- ไม่ใช้ข้อมูลจริงหรือ confidential data
 
 > จุดประสงค์คือเปรียบเทียบ **Human-designed deterministic Workflow** กับ **Agent-planned bounded execution** ไม่ใช่ให้ Agent แทน Workflow ในทุกสถานการณ์
 
@@ -78,60 +52,15 @@ Human reviews evidence and accepts/rejects changes
 
 หากองค์กรทำงานนี้ซ้ำ จึงค่อยเปลี่ยน rules/checklist ที่ผ่านการทดสอบเป็น workspace **Skill**; การทำเป็น Skill ไม่ได้อนุญาตให้เปิด Connector หรือ MCP โดยอัตโนมัติ
 
-ดูนิยามกลางที่ [Skill](../01-introduction/glossary.md#skill), [Connector](../01-introduction/glossary.md#connector), [MCP](../01-introduction/glossary.md#mcp-model-context-protocol) และ [Guardrail](../01-introduction/glossary.md#guardrail)
+ดูนิยามกลางที่ [Skill](../../01-introduction/glossary.md#skill), [Connector](../../01-introduction/glossary.md#connector), [MCP](../../01-introduction/glossary.md#mcp-model-context-protocol) และ [Guardrail](../../01-introduction/glossary.md#guardrail)
 
-## เปรียบเทียบโจทย์เดียวกัน
-
-| Lab 2–3: Make + Gemini | Lab 4: Antigravity |
-|---|---|
-| ผู้เรียนกำหนด Form, Trigger, AI step, Parser, Router และ Actions | ผู้เรียนกำหนด Goal, Project Boundary, Rules, Inputs และ Deliverables |
-| เส้นทางถูกออกแบบล่วงหน้าและทำซ้ำได้ | Agent สร้าง plan/task list และเลือกวิธีทำภายในขอบเขต |
-| ทำ Action กับ Sheet/Drive/Gmail ตาม module ที่กำหนด | Core lab สร้างไฟล์ local เท่านั้น |
-| เหมาะกับ event-driven recurring process | เหมาะกับ bounded one-off analysis และ artifact creation |
-| Audit ผ่าน run history, mappings และ route | Audit ผ่าน plan, task list, file changes, source IDs, validation และ walkthrough |
-
-## Free-plan และ Installation Guardrail
-
-Antigravity มี individual tier ราคา $0 พร้อม basic weekly rate limits แต่ model/limits และ UI เปลี่ยนได้ ตรวจ [Pricing](https://antigravity.google/pricing), [Download](https://antigravity.google/download), [Docs](https://antigravity.google/docs/home) และ [Official Getting Started Codelab](https://codelabs.developers.google.com/getting-started-google-antigravity) ก่อนสอน
-
-- ติดตั้ง Antigravity 2.0 ล่วงหน้า ไม่ใช้เวลาห้องเรียน download พร้อมกัน 50 คน
-- ใช้หนึ่งเครื่อง/หนึ่ง project/หนึ่ง conversation ต่อทีม
-- ใช้ model ที่ individual tier เปิดให้และไม่ซื้อ plan เพื่อผ่าน Workshop
-- ไม่เปิด multi-agent teamwork, subagents, browser หรือ schedule
-- หาก quota, installation หรือ account ไม่พร้อม ใช้ [Fallback](#fallback) ทันที
-
-> **UI MAY VARY:** ชื่อ Security Preset, Agent Behaviour, Review Policy, Project Settings, Artifacts และ Proceed/Review controls อาจเปลี่ยน ให้เลือก function ที่จำกัด project และให้คน review ก่อน execution ตาม UI ที่เห็นจริง
-
-## Timebox
-
-| นาที | งาน |
-|---:|---|
-| 0–4 | เปรียบเทียบ Make Workflow กับ Antigravity Agent |
-| 4–8 | เตรียม local project folder และ dataset |
-| 8–13 | เปิด Antigravity สร้าง Project และตั้ง Guardrails |
-| 13–18 | ส่ง bounded task และ review plan |
-| 18–24 | Agent สร้าง artifacts ภายใน project |
-| 24–28 | Validate triage, HIGH report และ files |
-| 28–30 | Compare architecture และสรุป |
-
-## ก่อนเริ่ม
-
-- [ ] รวมทีม 3–4 คนและเลือก Operator หนึ่งคน
-- [ ] ติดตั้ง Antigravity 2.0 และ Sign in เรียบร้อยก่อน Workshop
-- [ ] ดาวน์โหลด/เปิด [Antigravity Lab Input](../templates/antigravity-lab-input.md)
-- [ ] เปิด [Lab 4 Prompts](prompts.md)
-- [ ] สร้างโฟลเดอร์ใหม่ที่ไม่มีไฟล์ธุรกิจจริง
-- [ ] ยืนยันว่าจะไม่เปิด browser, schedule, MCP, Connector หรือ external action
-- [ ] ปิดหน้าต่างหรือ notification ที่อาจเปิดเผยข้อมูลส่วนตัวก่อนถ่าย screenshot
 
 ## 📌 Step 1 — Frame the Business Goal
 
-### Click / Do
 
-1. รวมทีม 3–4 คน
-2. เลือก Operator หนึ่งคนเป็นผู้ควบคุม Antigravity และกด approval
-3. เลือก Reviewer หนึ่งคนอ่าน Plan และ file changes โดย Reviewer ต้องไม่เป็นคนเดียวกับ Operator ถ้าจำนวนคนพอ
-4. เปิด Notes หรือกระดาษ แล้วให้ทีมเขียน Goal หนึ่งประโยคก่อนเปิด Agent:
+1. Download [Google Antigravity 2.0](https://antigravity.google/) แบบ standalone desktop และใช้งานด้วย Google Account
+
+2. Goal หนึ่งประโยคก่อนเปิด Agent:
 
 ```text
 ช่วยผู้จัดการจัดลำดับคำร้องทางธุรกิจอย่างสม่ำเสมอ
