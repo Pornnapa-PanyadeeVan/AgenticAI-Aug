@@ -181,10 +181,10 @@ Google Sheets → Watch New Rows
 2. เมื่อ module แสดงว่ากำลังรอข้อมูล ให้กลับไป Google Form
 3. Submit ข้อมูลทดสอบใหม่ 1 รายการ อย่าใช้แถวที่มีอยู่ก่อนเริ่ม Run once
 ตัวอย่าง
-> `Requester Name : สมชาย ใจดี
-Department : Seles
-Business Request : 	ลูกค้ารายใหญ่ไม่สามารถชำระเงินผ่านระบบได้และแจ้งว่าหากไม่สามารถแก้ไขได้ภายในวันนี้อาจยกเลิกคำสั่งซื้อ
-Required Date : วันนี้`
+> Requester Name : สมชาย ใจดี
+> Department : Seles
+> Business Request : 	ลูกค้ารายใหญ่ไม่สามารถชำระเงินผ่านระบบได้และแจ้งว่าหากไม่สามารถแก้ไขได้ภายในวันนี้อาจยกเลิกคำสั่งซื้อ
+> Required Date : วันนี้
 
 4. กลับ Make แล้วคลิกตัวเลขใน bubble เหนือ module
 5. ขยาย `Bundle 1` และตรวจว่ามี `Row number`, `Timestamp`, `Request ID`, `Requester`, `Department` และ `Request`
