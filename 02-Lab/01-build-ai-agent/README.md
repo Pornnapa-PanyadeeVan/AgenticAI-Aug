@@ -22,6 +22,7 @@ Decision
 Recommendation
 ```
 
+![Overview Workflow](assets/Lab1-overview.png) 
 > Lab 1 เป็น AI Agent ระดับ Assist: Agent ให้เหตุผลและแนะนำ แต่ยังไม่ส่ง email หรือบันทึก Sheet งาน Action จริงจะเกิดใน Lab 2
 
 ## ก่อนเริ่ม

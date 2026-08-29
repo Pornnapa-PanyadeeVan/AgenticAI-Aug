@@ -4,8 +4,6 @@
 
 🎯 **Goal**  เข้าใจพัฒนาการจาก Generative AI ไปสู่ AI Agent และ Agentic AI รวมถึงองค์ประกอบ ระดับความเป็นอิสระ และบทบาทของมนุษย์ในระบบ
 
-⏱ **Estimated Time**  25 นาที
-
 📑 **Slide Deck**  [AI at Work: From Automation to Agentic AI](01-Introduction.pdf)
 
 📖 **Reference**  [คำศัพท์พื้นฐาน Agentic AI: Agent, Skill, Tool, Connector, MCP, Workflow และ Guardrail](glossary.md)
@@ -31,18 +29,6 @@ Autonomy Spectrum
 ↓
 Learning Path → Workshop Labs
 ```
-
-## Timebox
-
-| นาที | เนื้อหา |
-|---:|---|
-| 0–3 | แผนที่ภาพรวมของ Agentic AI และ Generative AI |
-| 3–8 | AI Agent: ความหมาย องค์ประกอบ และประโยชน์ |
-| 8–12 | เครื่องมือ ตัวอย่างใช้งาน Tool, Connector และ MCP |
-| 12–16 | Agent Loop และความต่างระหว่าง Recommendation กับ Action |
-| 16–20 | Agentic AI System, Guardrails และกรณีใช้งานธุรกิจ |
-| 20–23 | Autonomy Spectrum และบทบาทมนุษย์ |
-| 23–25 | Learning Path, Discussion และ Checkpoint |
 
 ## 1. The Complete Map of Agentic AI
 
@@ -396,20 +382,6 @@ Data → Information → Insight → Decision → Action
 3. การจัด Priority ผิดอาจสร้างผลกระทบต่อใครบ้าง?
 4. Action ใดควรให้ AI ทำอัตโนมัติ และ Action ใดต้องรอคนอนุมัติ?
 5. ระดับ Autonomy ใดเหมาะกับข้อมูลอ่อนไหวหรือ Action ที่ย้อนกลับไม่ได้?
-
-## ✅ Checkpoint
-
-- [ ] อธิบายแผนที่ 4 ชั้น: LLMs, AI Agents, Agentic Systems และ Agentic Ecosystem ได้
-- [ ] อธิบายความต่างระหว่าง Generative AI, AI Agent, Workflow และ Agentic AI ได้
-- [ ] แยก Skill, Tool, Connector, MCP, Workflow และ Guardrail ได้
-- [ ] อธิบาย Agent Loop: Observe → Reason → Decide ได้
-- [ ] ยกตัวอย่าง Recommendation และ Action อย่างละหนึ่งตัวอย่างได้
-- [ ] อธิบายว่า Autonomy เป็น spectrum และระบุ Human Role ของแต่ละระดับได้
-- [ ] เชื่อม Learning Path กับ Lab 1–4 ได้
-
-## 🏁 Completed
-
-พร้อมเปลี่ยน Prompt ธรรมดาให้เป็น Business Request Agent ใน Google AI Studio
 
 ---
 
