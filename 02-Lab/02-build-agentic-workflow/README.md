@@ -300,7 +300,7 @@ priority Equal to LOW
 
 ## 📌 Step 8 — Send Gmail Only for HIGH
 
-HIGH row ที่มี `Report Status = NOT STARTED` และ `Follow-up Status = OPEN` คือ input ของ [Lab 3: HIGH Priority Situation & Follow-up PDF](../03-generate-management-report/README.md)
+ใน [Lab 3: HIGH Priority Situation & Follow-up PDF](../03-generate-management-report/README.md) ผู้เรียนจะเปิด Scenario นี้อีกครั้ง แล้วต่อยอด HIGH route หลัง `Update a Row` ให้สร้าง DRAFT report และ PDF โดยใช้ bundle เดิม ไม่ต้องสร้าง Scenario หรือ Search Rows ใหม่
 
 
 หลัง `Update a Row` ใน Route 1 เพิ่ม `Gmail — Send an Email`
@@ -374,7 +374,7 @@ HIGH row ที่มี `Report Status = NOT STARTED` และ `Follow-up Stat
 1. กด `Save` ให้ Scenario ล่าสุดถูกบันทึก
 2. ตรวจสวิตช์ Scheduling ว่ายังเป็น `OFF`
 3. อย่ากด Activate หรือเปิดรันตามเวลาใน Workshop
-4. คงแถว `BR-001` ที่เป็น HIGH ไว้ เพราะ Lab 3 จะค้นหาและอัปเดตแถวนี้ต่อ
+4. คง Scenario และ HIGH route นี้ไว้ เพราะ Lab 3 จะเปิด Scenario เดิมและเพิ่ม report/PDF modules ต่อจากเส้น HIGH จากนั้นจึง Submit HIGH request ใหม่เพื่อทดสอบ flow ที่ต่อแล้ว
 
 > การใช้ `Run once` ทำให้ผู้เรียนเห็นข้อมูลผ่านแต่ละ module และควบคุม quota ได้ง่ายกว่า การเปิด schedule ไม่ใช่เงื่อนไขการผ่าน Lab
 

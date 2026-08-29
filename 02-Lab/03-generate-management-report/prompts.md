@@ -1,10 +1,10 @@
 # Lab 3 — HIGH Priority Situation & Follow-up Report Prompts
 
-[← Lab 3 Guide](README.md) · [Home](../README.md) · [Next: LINE OA Demo →](../05-line-oa-demo/README.md)
+[← Lab 3 Guide](README.md) · [Home](../../README.md) · [Next: Antigravity →](../04-antigravity/README.md)
 
 ## HIGH Priority Situation Report Prompt
 
-แทน `{{HIGH_CASE_DATA}}` ด้วย HIGH row จำลองหนึ่งรายการจาก Lab 2
+แทน `{{HIGH_CASE_DATA}}` ด้วย tokens ของ bundle ปัจจุบันจาก `Watch New Rows` และ `Parse JSON` บน HIGH route ของ Scenario Lab 2 ห้าม hard-code Request ID
 
 ```text
 You are a managerial incident-reporting assistant.
@@ -105,7 +105,7 @@ Return the complete corrected Thai report.
 
 ```text
 Report Generated At: 2026-08-28 14:00 Asia/Bangkok
-Request ID: BR-001
+Request ID: MM001
 Requester: Demo Requester A
 Department: Sales
 Original Request: ลูกค้ารายใหญ่ไม่สามารถชำระเงินผ่านระบบได้และอาจยกเลิกคำสั่งซื้อ
@@ -148,6 +148,7 @@ Request ID: {{REQUEST_ID}}
 Department: {{DEPARTMENT}}
 Situation: {{SUMMARY}}
 Follow-up Status: OPEN
+Report Link: {{REPORT_LINK}}
 
 สิ่งที่ต้องทำต่อ:
 1. ตรวจสอบข้อเท็จจริงและผลกระทบ
@@ -173,4 +174,4 @@ Follow-up Status: OPEN
 
 ---
 
-[← Lab 3 Guide](README.md) · [Home](../README.md) · [Next: LINE OA Demo →](../05-line-oa-demo/README.md)
+[← Lab 3 Guide](README.md) · [Home](../../README.md) · [Next: Antigravity →](../04-antigravity/README.md)

@@ -33,7 +33,7 @@ Human Review
 | Introduction | เข้าใจ Generative AI, AI Agent, Agentic AI, Autonomy Spectrum และ Guardrail | แนวคิดและกรณีศึกษา | [คู่มือ](01-introduction/README.md) · [Glossary](01-introduction/glossary.md) |
 | Lab 1 — Business Request AI Agent | สร้างผู้ช่วยที่สรุปคำร้อง จัด Priority อธิบายเหตุผล และแนะนำ Next Action | Google AI Studio | [คู่มือ](02-Lab/01-build-ai-agent/README.md) · [Prompts](02-Lab/01-build-ai-agent/prompts.md) |
 | Lab 2 — Agentic Workflow | รับคำร้องจาก Form วิเคราะห์ด้วย Gemini เขียนผลกลับ Sheet และส่ง Gmail เฉพาะรายการ HIGH | Google Forms, Google Sheets, Make, Gemini, Gmail | [คู่มือ](02-Lab/02-build-agentic-workflow/README.md) · [Prompts](02-Lab/02-build-agentic-workflow/prompts.md) |
-| Lab 3 — Managerial AI | วิเคราะห์ Request History หา Pattern และ Risk แล้วสร้างรายงานผู้บริหาร ส่งออกเอกสาร/PDF และจัดส่ง | Make, Gemini, Google Docs, Drive, Gmail | [คู่มือ](02-Lab/03-generate-management-report/README.md) · [Prompts](02-Lab/03-generate-management-report/prompts.md) |
+| Lab 3 — Managerial AI | ต่อยอด HIGH route จาก Lab 2 เพื่อสร้าง DRAFT situation report, ส่งออก PDF, อัปเดต tracker และรอ Human Review | Make, Gemini, Google Docs, Drive, Gmail | [คู่มือ](02-Lab/03-generate-management-report/README.md) · [Prompts](02-Lab/03-generate-management-report/prompts.md) |
 | Lab 4 — Manus AI | ให้ Agent วางแผนทำ Request Triage และ Management Report แบบ end-to-end ภายในงานที่กำหนดขอบเขต | Manus | [คู่มือ](02-Lab/04-manus-ai/README.md) · [Prompts](02-Lab/04-manus-ai/prompts.md) |
 
 ## เรียนแล้วได้อะไร
@@ -61,7 +61,7 @@ Human Review
 1. เริ่มจาก [Introduction](01-introduction/README.md) เพื่อทำความเข้าใจภาพรวมและคำศัพท์
 2. ทำ [Lab 1](02-Lab/01-build-ai-agent/README.md) เพื่อสร้าง Agent และทดสอบ Business Rules
 3. ต่อด้วย [Lab 2](02-Lab/02-build-agentic-workflow/README.md) เพื่อเชื่อม Agent เข้ากับ Workflow และ Action
-4. ใช้ข้อมูลที่สะสมไปทำ [Lab 3](02-Lab/03-generate-management-report/README.md)
+4. เปิด Scenario เดิมและต่อยอด HIGH route ใน [Lab 3](02-Lab/03-generate-management-report/README.md)
 5. ปิดท้ายด้วย [Lab 4](02-Lab/04-manus-ai/README.md) เพื่อเปรียบเทียบวิธีทำงานแบบ Workflow กับ Agent
 
 > แต่ละ Lab มีไฟล์ `prompts.md` สำหรับ Copy/Paste Prompt และข้อมูลทดสอบ ควรเปิดคู่กับคู่มือของ Lab นั้น
