@@ -110,11 +110,6 @@ Request ID
 ```
 
 ![Google Sheet](assets/Lab2-GoogleSheet.png)
-> อย่าเปลี่ยนชื่อหรือลบคอลัมน์คำตอบ 5 ช่องแรกหลังเชื่อม Form แล้ว หากแก้คำถามใน Form ให้กลับมา refresh field mapping ใน Make
-
-> 📷 **L2-03 — Link to Sheets**: ให้เห็นปุ่มเชื่อม response กับ Spreadsheet และชื่อ `Business Request Log`
-
-> 📷 **L2-04 — Sheet with 13 columns**: ให้เห็น header A–M ตั้งแต่ Timestamp ถึง Follow-up Status และไม่มีข้อมูลจริง
 
 💡 **Why This Matters**  Google Sheets ทำหน้าที่เป็น business data storage และ follow-up tracker แบบง่าย HIGH row จะส่งต่อให้ Lab 3 สร้าง Situation & Follow-up PDF ไม่ใช่ long-term production database
 
