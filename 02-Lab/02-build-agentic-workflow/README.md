@@ -185,7 +185,8 @@ Google Sheets → Watch New Rows
 7. กด `OK`
 
 ![Gemini5](assets/Lab2-4-1.png)
-![Output5](assets/Lab2-4-1.png)
+
+![Output5](assets/Lab2-4-2.png)
 
 Gemini ต้องตอบ JSON object เดียวในโครงสร้างนี้:
 
@@ -256,9 +257,8 @@ priority Equal to LOW
 
 อย่าใช้ `contains HIGH` และไม่แนะนำให้ตั้ง Route 2 เป็นเพียง `priority != HIGH` เพราะค่าผิดรูปแบบอาจถูกบันทึกเป็นผลปกติ
 
-💡 **Why This Matters**  Router คือ Decision step: ผล AI ไม่ได้เป็นเพียงข้อความ แต่กำหนดว่า Workflow จะทำอะไรต่อ
-
 ![router](assets/Lab2-6-1.png)
+
 ![router](assets/Lab2-6-2.png)
 
 ## 📌 Step 7 — Update the Same Row on Both Routes
@@ -300,17 +300,14 @@ priority Equal to LOW
 
 ## 📌 Step 8 — Send Gmail Only for HIGH
 
-HIGH row ที่มี `Report Status = NOT STARTED` และ `Follow-up Status = OPEN` คือ input ของ [Lab 3: HIGH Priority Situation & Follow-up PDF](../04-generate-management-report/README.md)
+HIGH row ที่มี `Report Status = NOT STARTED` และ `Follow-up Status = OPEN` คือ input ของ [Lab 3: HIGH Priority Situation & Follow-up PDF](../03-generate-management-report/README.md)
 
-💡 **Why This Matters**  Workflow ทำ Real Action แล้ว แต่ Action ถูกจำกัดให้ reversible และ low-risk
 
 หลัง `Update a Row` ใน Route 1 เพิ่ม `Gmail — Send an Email`
 
 - To: อีเมลของผู้เรียนเอง `[Your Email]`
 - Subject: ใช้ [HIGH Alert Email Template](prompts.md#high-alert-email-template)
 - Body: Map Form fields และ parsed JSON fields
-
-อย่าใส่ Gmail module ใน Route 2
 
 ขั้นตอนใน Make:
 
@@ -319,15 +316,33 @@ HIGH row ที่มี `Report Status = NOT STARTED` และ `Follow-up Stat
 3. เชื่อมบัญชีทดสอบของตนเอง
 4. ใส่ To เป็นอีเมลของตนเองเท่านั้น
 5. Copy subject/body template แล้ว map Request ID, Department, Summary, Reason และ Recommended Action
-6. ไม่ต้องแนบไฟล์ใน Lab 2; PDF จะเกิดใน Lab 3
+> 🚨 HIGH PRIORITY BUSINESS REQUEST
 
-> 📷 **L2-14 — HIGH Gmail mapping**: ให้เห็น subject/body tokens และปิดทับที่อยู่อีเมล
+      Requester: {{Requester Name}}
+      Department:{{Department}}
+      Required Date:{{Required Date}}
 
+      Business Request: {{Business Request}}
+
+
+      AI Analysis
+      -------------------------
+      Summary:{{summary}}
+
+      Priority:{{priority}}
+
+      Reason:{{reason}}
+
+
+      Recommended Action:{{recommended_action}}
+
+
+      Please review and take action immediately.
+
+![Email](assets/Lab2-8.png)
 > Email นี้เป็น alert เพื่อให้คนตรวจ ไม่ใช่การอนุมัติ การคืนเงิน การลงโทษ หรือการแก้ปัญหาโดยอัตโนมัติ
 
 ✅ **Checkpoint**  HIGH ได้ทั้งผลใน Sheet และอีเมล 1 ฉบับ ส่วน MEDIUM/LOW อัปเดต Sheet แต่ไม่มีอีเมล
-
-⚠️ **Common Problem**  หาก Gmail connection unavailable ให้ใช้ `Processing Status = HIGH — HUMAN REVIEW REQUIRED` เป็น alert marker ซึ่งถือว่าผ่าน Lab 2
 
 ## 📌 Step 9 — Test HIGH, MEDIUM, LOW
 
@@ -343,11 +358,8 @@ HIGH row ที่มี `Report Status = NOT STARTED` และ `Follow-up Stat
 6. เปิด Google Sheets แล้วตรวจว่ามี 3 response rows ไม่ใช่ 6
 7. ตรวจทุก column ตั้งแต่ Summary ถึง Follow-up Status
 
-> 📷 **L2-15 — Complete scenario**: ให้เห็น flow ครบทุก module และ Scheduling = OFF
+![Finish Flow](assets/Lab2-9.png)
 
-> 📷 **L2-16 — HIGH run history**: ให้เห็น operation bubble เฉพาะ HIGH route โดยปิดข้อมูลผู้ใช้
-
-> 📷 **L2-17 — Sheet test results**: ให้เห็น HIGH/MEDIUM/LOW สามแถวและผลลัพธ์ในแถวเดิม
 
 | Test | Expected Route | Sheet | Gmail |
 |---|---|---|---|
@@ -355,21 +367,7 @@ HIGH row ที่มี `Report Status = NOT STARTED` และ `Follow-up Stat
 | MEDIUM | Route 2 | Update row + `TRIAGED` | ไม่ส่ง |
 | LOW | Route 2 | Update row + `TRIAGED` | ไม่ส่ง |
 
-### 🧪 Test Checklist
 
-- [ ] Form มี responses 3 รายการ
-- [ ] Sheet มี 3 rows ไม่ใช่ 6 rows
-- [ ] ทุก row มี Summary, Priority, Reason และ Recommended Action
-- [ ] HIGH email ถูกส่งเพียง 1 ฉบับถึงตนเอง
-- [ ] Route filters ไม่ทับกัน
-- [ ] Sheet มี 13 fields ที่ถูกต้อง
-- [ ] HIGH row มี `Report Status = NOT STARTED` และ `Follow-up Status = OPEN`
-- [ ] Request ID ไม่ซ้ำและใช้ค้นหา row เดิมได้
-- [ ] ไม่มี request ซ้ำจากการกด Run หลายครั้ง
-- [ ] ไม่มี API key ใน input/output history ที่แชร์กับผู้อื่น
-- [ ] ปิด Scenario schedule หลัง Lab
-
-✅ **Checkpoint**  HIGH, MEDIUM และ LOW เข้า route ถูกต้อง และทุก response มีผล AI ในแถวเดิม
 
 ## 📌 Step 10 — Save but Do Not Activate the Schedule
 
@@ -403,41 +401,7 @@ Agentic Workflow: Trigger → AI Reasoning → Decision → Tool → Action
 3. เหตุใด HIGH จึงควรแจ้งคน แต่ไม่ควรอนุมัติ action ที่มีผลกระทบสูงเอง?
 4. จะป้องกันการประมวลผลซ้ำเมื่อ Scenario retry ได้อย่างไร?
 
-## Fallback without API
 
-หากสร้าง key ไม่ได้, quota เต็ม หรือ Make เชื่อม Gemini ไม่สำเร็จ:
-
-1. ให้ Google Form และ `Watch New Rows` ทำงานตามเดิม
-2. ใช้ Google AI Studio จาก Lab 1 วิเคราะห์คำร้องด้วยมือ หรือใช้ [Fallback JSON](prompts.md#fallback-json)
-3. ป้อน JSON เข้า Scenario หลังจุด AI หรือใช้ Instructor scenario
-4. ทำ Parse JSON, Router และ Update Row ต่อให้ครบ
-5. ไม่แชร์ API key ของผู้สอน
-
-```text
-Google Form → Sheet → AI (manual/prepared JSON)
-→ Router → Update Row → Optional HIGH Alert
-```
-
-ผู้เรียนยังได้เรียนรู้ architecture แม้ AI connector ล้มเหลว
-
-## Free-tier Reminder
-
-- Make Free มี credit และ scheduling limits; ตรวจ [Make Pricing](https://www.make.com/en/pricing)
-- Gemini Free Tier มี model/rate limits; ไม่รับประกันว่าจะรองรับ 50 accounts พร้อมกัน
-- จำกัดการทดสอบและปิด Scenario schedule หลังจบ
-- Lab ผ่านเมื่อเห็น decision และ action ไม่จำเป็นต้องเปิดระบบ production
-
-## 🏁 Completed
-
-- [ ] สร้าง Google Form และเชื่อม response sheet
-- [ ] `Watch New Rows` อ่าน response ใหม่ได้
-- [ ] เก็บ API key ใน connection อย่างปลอดภัย หรือใช้ fallback
-- [ ] Gemini ตอบ valid JSON และ Parse ได้
-- [ ] Router มี HIGH และ MEDIUM/LOW routes
-- [ ] ทั้ง 2 routes อัปเดตแถวเดิมด้วย `Row number`
-- [ ] Gmail ทำงานเฉพาะ HIGH หรือใช้ status marker fallback
-- [ ] HIGH row พร้อมเป็น input ของ Lab 3
-- [ ] ทดสอบ HIGH, MEDIUM และ LOW แล้ว
 
 ---
 
