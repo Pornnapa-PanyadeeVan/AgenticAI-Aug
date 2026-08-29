@@ -1,95 +1,134 @@
-# Lab 3 — Management Report Prompts
+# Lab 3 — HIGH Priority Situation & Follow-up Report Prompts
 
 [← Lab 3 Guide](README.md) · [Home](../README.md) · [Next: LINE OA Demo →](../05-line-oa-demo/README.md)
 
-## Weekly Management Report Prompt
+## HIGH Priority Situation Report Prompt
 
-แทน `{{REQUEST_DATA}}` ด้วยข้อมูลจำลองที่รวมจาก Google Sheets
+แทน `{{HIGH_CASE_DATA}}` ด้วย HIGH row จำลองหนึ่งรายการจาก Lab 2
 
 ```text
-You are a management reporting assistant.
+You are a managerial incident-reporting assistant.
 
-Analyze the following business requests
-and create a concise weekly management report.
+Create a concise Thai draft report for ONE simulated business request
+that has already been classified as HIGH.
 
-Your goal is NOT to summarize each request separately.
+If the supplied Priority is not exactly HIGH, stop and return:
+"STOP — Source Priority is not HIGH; no report created."
 
-Identify patterns across all requests.
+Use only the supplied case data. Do not invent facts, counts, monetary values,
+root causes, owner names, deadlines, resolution status, policies, or SLAs.
+If information is unavailable, write "ไม่พบในข้อมูลต้นทาง".
 
-The report must include:
+Do not approve, authorize, compensate, discipline, contact external parties,
+or claim that any corrective action has already occurred.
 
-1. Executive Summary
-2. Total Requests
-3. Priority Distribution
-4. Key Issues
-5. Recurring Problems
-6. Departments Requiring Attention
-7. Business Risks
-8. Recommended Management Actions
-9. Items Requiring Human Review
+Title:
+# ร่างรายงานสถานการณ์เร่งด่วนและรายการติดตาม
 
-Write the final report in Thai.
+Required sections:
 
-Use this structure:
+## สถานะรายงาน
+- DRAFT — HIGH PRIORITY — HUMAN REVIEW REQUIRED
 
-# Weekly Business Request Report
+## ข้อมูลอ้างอิง
+- Report Generated At
+- Request ID
+- Department
+- Source Priority
 
-## Executive Summary
+## ภาพรวมสถานการณ์
+- What happened
+- What is affected
+- What is known now
 
-## Request Overview
+## ผลกระทบที่มีหลักฐาน
+- Customer
+- Financial / Revenue
+- Operations
+- Compliance / Reputation
+- Time Sensitivity
+Mark unsupported dimensions as "ไม่พบในข้อมูลต้นทาง".
 
-## Priority Distribution
+## เหตุผลที่จัดเป็น HIGH
+- Explain using evidence from the source only
 
-## Key Issues
+## สิ่งที่ต้องได้รับ Attention ทันที
+- Provide proposed checks, containment, or escalation steps
+- Label every item as a recommendation pending human confirmation
 
-## Recurring Patterns
+## รายการติดตาม
+Create a table with:
+Follow-up Item | Proposed Owner | Target Time | Status | Evidence / Source
+Use "Manager to assign" and "Manager to confirm" when not provided.
+Use OPEN or PENDING VALIDATION as status; never write RESOLVED.
 
-## Departments Requiring Attention
+## การตัดสินใจหรือการอนุมัติที่ต้องการ
 
-## Business Risks
+## ข้อมูลที่ยังขาด
 
-## Recommended Management Actions
+## Human Review Sign-off
+- Reviewer
+- Decision / Changes
+- Owner Confirmed
+- Target Time Confirmed
+- Review Date
 
-## Human Review Required
+End with:
+"รายงานนี้สร้างจากข้อมูลจำลองเพื่อการเรียนรู้ ต้องตรวจสอบข้อเท็จจริง
+และได้รับการยืนยันจากผู้รับผิดชอบก่อนดำเนินการหรือเผยแพร่"
 
-Business Request Data:
-
-{{REQUEST_DATA}}
+HIGH Case Data:
+{{HIGH_CASE_DATA}}
 ```
 
-## Optional Data-quality Guardrail
+## Correction Prompt
 
-เพิ่มก่อน `Business Request Data:` เมื่อต้องการความระมัดระวังมากขึ้น:
+ใช้เมื่อ draft แต่งข้อมูลหรือแสดงสถานะเกินหลักฐาน:
 
 ```text
-Do not invent counts, departments, causes, or risks that are not supported by the data.
+Revise the report using only the supplied source fields.
 
-If the dataset is too small or incomplete, state that limitation clearly.
+- Remove invented root causes, counts, amounts, owner names, deadlines,
+  SLAs, policies, actions already taken, and resolution claims.
+- Replace unsupported facts with "ไม่พบในข้อมูลต้นทาง".
+- Label proposed actions as recommendations pending human confirmation.
+- Use "Manager to assign" for unknown owners.
+- Use "Manager to confirm" for unknown target times.
+- Keep Follow-up Status as OPEN or PENDING VALIDATION.
+- Keep the banner DRAFT — HIGH PRIORITY — HUMAN REVIEW REQUIRED.
+- Preserve the original Request ID.
 
-Separate observed patterns from hypotheses.
-
-Do not make final financial, legal, compliance, or employee decisions.
-Place those items under Human Review Required.
+Return the complete corrected Thai report.
 ```
 
-## Aggregated Data Format
+## Fallback HIGH Case
 
 ```text
-Record 1
-Department: IT
-Request: ระบบรับคำสั่งซื้อหยุดทำงานที่หนึ่งสาขา
-Summary: สาขาไม่สามารถรับคำสั่งซื้อได้
+Report Generated At: 2026-08-28 14:00 Asia/Bangkok
+Request ID: BR-001
+Requester: Demo Requester A
+Department: Sales
+Original Request: ลูกค้ารายใหญ่ไม่สามารถชำระเงินผ่านระบบได้และอาจยกเลิกคำสั่งซื้อ
+AI Summary: ลูกค้ารายใหญ่ชำระเงินไม่ได้และคำสั่งซื้อสำคัญมีความเสี่ยงถูกยกเลิก
 Priority: HIGH
-Reason: กระทบ operations และลูกค้าทันที
-Recommended Action: แจ้ง IT owner และสาขา พร้อมติดตามการกู้ระบบ
+Priority Reason: มีผลกระทบต่อลูกค้าและรายได้ทันที พร้อมข้อจำกัดด้านเวลา
+Recommended Action: ตรวจสถานะ payment service แจ้ง owner ที่รับผิดชอบ และติดตามผลกับ Manager
+Current Follow-up Status: OPEN
+```
 
-Record 2
-Department: Customer Service
-Request: ลูกค้าหลายรายร้องเรียนว่าสินค้าส่งล่าช้า
-Summary: มีข้อร้องเรียนการส่งล่าช้าซ้ำ
-Priority: MEDIUM
-Reason: กระทบประสบการณ์ลูกค้าแต่ยังดำเนินงานได้
-Recommended Action: ตรวจ SLA และสาเหตุร่วมกับ Operations
+## Case Payload Template
+
+```text
+Report Generated At: {{TIMESTAMP}}
+Request ID: {{REQUEST_ID}}
+Requester: {{REQUESTER}}
+Department: {{DEPARTMENT}}
+Original Request: {{REQUEST}}
+AI Summary: {{SUMMARY}}
+Priority: {{PRIORITY}}
+Priority Reason: {{REASON}}
+Recommended Action: {{RECOMMENDED_ACTION}}
+Current Follow-up Status: {{FOLLOW_UP_STATUS_OR_OPEN}}
 ```
 
 ## Email Template
@@ -97,53 +136,39 @@ Recommended Action: ตรวจ SLA และสาเหตุร่วมก�
 **Subject**
 
 ```text
-Weekly Business Request Report
+[DRAFT][HIGH][Human Review] {{REQUEST_ID}} — โปรดติดตามสถานการณ์เร่งด่วน
 ```
 
 **Body**
 
 ```text
-รายงาน Weekly Business Request Report สร้างเรียบร้อยแล้ว
+พบคำร้องจำลองที่ถูกจัดเป็น HIGH และสร้างร่างรายงานเพื่อ Human Review แล้ว
 
-จำนวนคำร้องทั้งหมด:
-{{TOTAL}}
+Request ID: {{REQUEST_ID}}
+Department: {{DEPARTMENT}}
+Situation: {{SUMMARY}}
+Follow-up Status: OPEN
 
-HIGH Priority:
-{{HIGH_COUNT}}
+สิ่งที่ต้องทำต่อ:
+1. ตรวจสอบข้อเท็จจริงและผลกระทบ
+2. ยืนยันหรือแก้ไข Priority
+3. มอบหมาย Owner
+4. ยืนยัน Target Time
+5. บันทึกการตัดสินใจและสถานะล่าสุด
 
-ประเด็นสำคัญ:
-{{KEY_ISSUE}}
-
-ไฟล์ PDF ฉบับเต็มแนบมากับ Email นี้
-
-หมายเหตุ: รายงานนี้สร้างจากข้อมูลจำลองสำหรับ Workshop และต้องผ่าน Human Review
-```
-
-## Notification Template
-
-```text
-📊 Weekly Business Request Report พร้อมแล้ว
-
-📄 File:
-Weekly-Business-Request-Report-YYYY-MM-DD.pdf
-
-📁 Location:
-Google Drive → Agentic-AI-Reports → Weekly-Reports
-
-🔗 Open Report:
-[Report Link]
-
-📧 ส่งรายงานทาง Email แล้ว
+ไฟล์แนบเป็น DRAFT และไม่ใช่การอนุมัติให้ดำเนินการ
 ```
 
 ## Report Quality Checklist
 
-- [ ] ไม่สรุปทีละ request อย่างเดียว
-- [ ] แยก observed pattern ออกจาก hypothesis
-- [ ] Total และ Priority Distribution ตรงกับข้อมูล
-- [ ] มี recurring issues และ departments requiring attention
-- [ ] Recommendation ระบุ owner/time horizon เมื่อข้อมูลรองรับ
-- [ ] High-impact decision อยู่ใน Human Review
+- [ ] ใช้ HIGH case เพียงหนึ่ง Request ID
+- [ ] HIGH มี evidence ไม่ใช่ urgent keyword อย่างเดียว
+- [ ] ไม่มีข้อเท็จจริง root cause, amount, owner หรือ deadline ที่แต่งขึ้น
+- [ ] Unsupported fields ใช้ `ไม่พบในข้อมูลต้นทาง`
+- [ ] Proposed actions รอ Human Confirmation
+- [ ] Follow-up status เป็น OPEN/PENDING VALIDATION
+- [ ] มี Missing Information และ Human Review Sign-off
+- [ ] PDF/filename ระบุ DRAFT และ Request ID
 - [ ] ไม่มีข้อมูลจริงหรือข้อมูลลับ
 
 ---
