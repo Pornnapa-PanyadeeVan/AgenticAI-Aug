@@ -16,7 +16,7 @@
 - [ ] ตรวจว่าบัญชีตัวอย่างสร้าง Gemini API key แบบ free tier ได้โดยไม่เปิด billing
 - [ ] ตรวจ restrictions ของบัญชีโรงเรียน/องค์กรและประเทศ
 - [ ] ไม่ใช้ instructor API key ร่วมกันทั้งห้อง
-- [ ] ตรวจเครื่องผู้เรียนว่า install [Google Antigravity 2.0](https://antigravity.google/download) ได้ตาม OS requirement และ Sign in ได้
+- [ ] ตรวจเครื่องผู้เรียนว่า install [Google Antigravity](https://antigravity.google/download) ได้ตาม OS requirement และ Sign in ได้
 - [ ] ทดสอบ Antigravity individual tier, New Project, Project Settings, plan review และการสร้าง report หนึ่งไฟล์
 - [ ] เตรียมหนึ่งเครื่อง/หนึ่ง dedicated project ต่อทีม ไม่เปิดทั้ง Desktop หรือ Downloads เป็น project scope
 
@@ -27,7 +27,7 @@
 - [ ] ทดสอบ Form → response sheet → `Watch New Rows` และเห็น `Row number`
 - [ ] ทดสอบ `Update a Row` ทั้ง HIGH และ MEDIUM/LOW โดยไม่เกิดแถวซ้ำ
 - [ ] ทดสอบ Router/filters ด้วย exact Priority values
-- [ ] ทดสอบ `Search Rows` แบบมาตรฐานด้วย Request ID `BR-001` + Priority `HIGH` และยืนยันว่า output มี `Row number` (ไม่ใช้ Advanced)
+- [ ] ทดสอบ Lab 3 โดยต่อ report/PDF modules บน HIGH route และ map `Row number` จาก `Watch New Rows`
 - [ ] ทดสอบ `Create a File from Text` → Convert to Google Docs ด้วยบัญชีปัจจุบัน
 - [ ] ทดสอบ `Download a File` → PDF หรือเตรียมทางเลือก `Google Docs — Download a Document`
 - [ ] ทดสอบ `Upload a File` ว่าได้รับ binary PDF มากกว่า 0 bytes และ link ยัง Restricted
@@ -98,7 +98,7 @@
 - [ ] Run Lab 1 test case หนึ่งรายการ
 - [ ] Submit Google Form แล้ว Run Lab 2 HIGH request end-to-end
 - [ ] ตรวจว่า response row ใน Business Request Log ถูกอัปเดตโดยไม่สร้างแถวซ้ำ
-- [ ] Run Lab 3 ต่อด้วย standard Search Rows หา `BR-001` และตรวจว่า output มี Row number
+- [ ] Run Lab 3 ด้วย HIGH request ใหม่และตรวจว่า report/PDF modules ใช้ bundle กับ Row number เดิม
 - [ ] ตรวจ Lab 3 path `Create text → Google Doc → Download PDF → Upload PDF → Update same row`
 - [ ] ตรวจว่า PDF ยังเป็น DRAFT และ Scheduling ยัง OFF
 - [ ] เปิด PDF จาก Drive
@@ -127,7 +127,7 @@
 - [ ] 00:50 หยุด Lab 1 และเริ่ม Lab 2
 - [ ] 01:15 ผู้ที่ API ยังไม่ผ่านเปลี่ยนเป็น fallback JSON
 - [ ] 01:30 พัก 10 นาที
-- [ ] 01:40 เริ่ม Lab 3 ด้วย HIGH row จาก Lab 2 หรือ fallback Request ID `BR-001` ทันที
+- [ ] 01:40 เริ่ม Lab 3 โดยเปิด Scenario ของ Lab 2 เดิม ต่อ report/PDF modules บน HIGH route แล้ว Submit HIGH request ใหม่
 - [ ] 01:55 ผู้ที่ PDF connector ไม่ผ่านใช้ manual document fallback
 - [ ] 02:05 เริ่ม LINE OA Instructor Demo
 - [ ] 02:15 เริ่ม Lab 4 Antigravity พร้อมกันเป็นทีม

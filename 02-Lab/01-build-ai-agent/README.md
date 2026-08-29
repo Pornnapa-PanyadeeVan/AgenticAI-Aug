@@ -22,7 +22,7 @@ Decision
 Recommendation
 ```
 
-![Overview Workflow](assets/Lab1-overview.png) 
+![Overview Workflow](assets/Lab1-overview.png)
 > Lab 1 เป็น AI Agent ระดับ Assist: Agent ให้เหตุผลและแนะนำ แต่ยังไม่ส่ง email หรือบันทึก Sheet งาน Action จริงจะเกิดใน Lab 2
 
 ## ก่อนเริ่ม
@@ -69,11 +69,11 @@ Prompt → Generate → Response
 
 ## 📌 Step 2 — เพิ่ม System Instructions
 
-Google AI Studio คือเครื่องมือบนเว็บของ Google สำหรับ ทดลองและพัฒนาแอปด้วย Gemini AI โดยไม่ต้องตั้งระบบซับซ้อน ใช้สำหรับทดลอง Prompt, ใส่ข้อความ/รูป/ไฟล์ให้ AI วิเคราะห์,ทดสอบโมเดล Gemini และนำโค้ด/API ไปต่อยอดเป็นเว็บหรือแอปได้
+Google AI Studio คือเครื่องมือบนเว็บของ Google สำหรับทดลองและพัฒนาแอปด้วย Gemini AI โดยไม่ต้องตั้งระบบซับซ้อน ใช้สำหรับทดลอง Prompt ใส่ข้อความ รูปภาพ หรือไฟล์ให้ AI วิเคราะห์ ทดสอบโมเดล Gemini และนำโค้ดหรือ API ไปต่อยอดเป็นเว็บหรือแอปได้
 
-1. เข้า [Google AI Studio](https://aistudio.google.com/
+1. เข้า [Google AI Studio](https://aistudio.google.com/)
 2. เลือก New app
-3. ระบุตำแหน่งช่องพิมพ์ Prompt 
+3. ระบุตำแหน่งช่องพิมพ์ Prompt
 
 เปิดพื้นที่ System Instructions แล้ว paste Prompt ด้านล่าง หรือคัดลอกจาก [prompts.md](prompts.md#system-instructions-copy-all)
 

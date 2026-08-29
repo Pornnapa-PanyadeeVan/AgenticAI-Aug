@@ -121,15 +121,15 @@
 | **Problem** | Scenario ผ่านแต่ไม่มี row หรือ row อยู่ผิด Sheet |
 | **Likely Cause** | Action ไม่ได้ run, route ไม่ match, เลือก Spreadsheet/Sheet ผิด, header changed หรือ permission |
 | **Quick Fix** | เปิด run history ตาม bundle, ตรวจ selected file/tab และ refresh column mapping |
-| **Instructor Fallback** | อัปเดต prepared row ด้วยตนเองและให้ผู้เรียนวาด mapping Form/AI fields → 13 Sheet columns |
+| **Instructor Fallback** | อัปเดต prepared row ด้วยตนเองและให้ผู้เรียนวาด mapping Form/AI fields → 14 Sheet columns |
 
-## Lab 3 cannot find or update the HIGH row
+## Lab 3 cannot update the HIGH row
 
 | | |
 |---|---|
 | **Problem** | สร้าง PDF ได้แต่ Report Link/Follow-up Status ไม่อัปเดตใน row เดิม |
-| **Likely Cause** | Request ID ว่าง/ซ้ำ, ค้นหาผิด Sheet, เลือก `Search Rows (Advanced)` ซึ่งไม่คืน row number, ใช้ add-row หรือ row number mapping หาย |
-| **Quick Fix** | ใช้ `Search Rows` แบบมาตรฐาน, filter exact Request ID + Priority = HIGH, Limit 1; ตรวจ output ว่ามี `Row number` แล้ว map ไป `Update a Row` พร้อม Report Status/Link/Follow-up |
+| **Likely Cause** | Request ID ว่าง, ใช้ `Add a Row` หรือไม่ได้ map `Row number` จาก `Watch New Rows` ไปยัง Report `Update a Row` บน HIGH route |
+| **Quick Fix** | ตรวจว่า HIGH route ใช้ bundle เดิม, map `Row number` จาก `Watch New Rows` และ map Report Status/Link/Follow-up กลับทุก column ที่จำเป็น |
 | **Instructor Fallback** | อัปเดตสาม fields ด้วยตนเองเป็น `DRAFT — HUMAN REVIEW REQUIRED`, filename/link และ `OPEN`; ห้ามสร้าง duplicate row |
 
 ## Google Drive text file does not become a Google Document
@@ -236,7 +236,7 @@
 | | |
 |---|---|
 | **Problem** | Agent เริ่มแก้ไฟล์ก่อน Human Proceed, แก้ input หรือสร้างไฟล์นอก `outputs/` |
-| **Likely Cause** | Conversation อยู่ Fast Mode, Artifact Review/Agent Behaviour ไม่ได้ตั้ง Request Review, project scope กว้าง, prompt/plan ไม่ระบุ output allowlist หรือผู้ใช้ approve เร็วเกิน |
+| **Likely Cause** | Artifact Review ไม่ได้ตั้ง `Always Ask`, project scope กว้าง, prompt/plan ไม่ระบุ output allowlist หรือผู้ใช้ approve เร็วเกินไป |
 | **Quick Fix** | Stop execution, reject/revert changes, เริ่ม conversation ใหม่ใน project เดิม, ตั้ง Artifact Review เป็น Always Ask, ใช้ dedicated folder แล้วส่ง [Boundary Correction Prompt](../02-Lab/04-antigravity/prompts.md#boundary-correction-prompt) |
 | **Instructor Fallback** | ใช้ prepared plan/file diff ให้ทีมระบุว่าจุดใดควรถูก reject ก่อนดำเนินการ |
 
@@ -245,8 +245,8 @@
 | | |
 |---|---|
 | **Problem** | ไม่เห็น Proceed, Agent เริ่มทำต่อเอง หรือชื่อ Artifact/Review control ต่างจากคู่มือ |
-| **Likely Cause** | Fast Mode, Artifact Review = Always Proceed, project-specific settings สืบทอดค่า global หรือ UI rollout ต่างกัน |
-| **Quick Fix** | กด Stop ก่อนมี file changes, เปิด Project Settings, เลือก Planning Mode และ Request Review ที่ artifact/agent behaviour; เริ่ม conversation ใหม่และตรวจ Plan ก่อนส่ง approval |
+| **Likely Cause** | Artifact Review อนุญาตให้ทำต่ออัตโนมัติ, project-specific settings สืบทอดค่า global หรือ UI rollout ต่างกัน |
+| **Quick Fix** | กด Stop ก่อนมี file changes เปิด Project Settings แล้วเลือก `Always Ask` หรือค่าที่ต้อง review ก่อนเปลี่ยนไฟล์ จากนั้นเริ่ม conversation ใหม่และตรวจ Plan ก่อนอนุมัติ |
 | **Instructor Fallback** | ใช้ Instructor Plan screenshot ให้ทีมทำ review checklist และตอบว่าจะ approve/reject เพราะเหตุใด |
 
 ## Antigravity proposes prohibited tools or external action
@@ -258,12 +258,12 @@
 | **Quick Fix** | Reject permission, กด Stop และใช้ [Boundary Correction Prompt](../02-Lab/04-antigravity/prompts.md#boundary-correction-prompt); อย่าเพิ่มสิทธิ์เพื่อให้ task ผ่าน |
 | **Instructor Fallback** | ใช้ prepared analysis-only artifacts แล้วอภิปราย Prompt guardrail เทียบกับ Permission guardrail |
 
-## Antigravity triage or HIGH reports fail validation
+## Antigravity report fails the quick review
 
 | | |
 |---|---|
-| **Problem** | Row count ไม่ใช่ 4, HIGH report count ไม่ตรง HIGH rows, file ซ้ำ/หาย, แต่ง facts หรืออ้างว่าทำ Action แล้ว |
-| **Likely Cause** | Agent ข้าม record, input context หาย, hallucination, filename ไม่ตรง plan หรือ validation ไม่ถูกทำ |
+| **Problem** | Triage row count ไม่ใช่ 4, ขาด HIGH follow-up, มีไฟล์เกินหนึ่งไฟล์, แต่ง facts หรืออ้างว่าทำ Action แล้ว |
+| **Likely Cause** | Agent ข้าม record, input context หาย, hallucination, output filename ไม่ตรง plan หรือ self-check ไม่ครบ |
 | **Quick Fix** | ตรวจ Quick Review ใน Lab 4 แล้วใช้ [Boundary Correction Prompt](../02-Lab/04-antigravity/prompts.md#boundary-correction-prompt) โดยให้แก้เฉพาะ `outputs/business-request-management-report.md` |
 | **Instructor Fallback** | ให้ทีมทำ reviewer role ระบุ fail points และเปรียบเทียบกับ deterministic validation ใน Make |
 

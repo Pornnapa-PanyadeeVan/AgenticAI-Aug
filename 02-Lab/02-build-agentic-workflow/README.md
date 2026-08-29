@@ -69,7 +69,7 @@ Connector ทำให้ระบบเข้าถึงบริการไ�
 | Requester Name | Short answer | `Demo Customer` |
 | Department | Dropdown | `Sales`, `Marketing`, `Finance`, `HR`, `Operations`, `IT`, `Customer Service` |
 | Business Request | Paragraph | `ลูกค้ารายใหญ่ไม่สามารถชำระเงินผ่านระบบได้...` |
-| Required Date | Date | `เวลาที่ต้องการ.` |
+| Required Date | Date | เลือกวันที่จากปฏิทิน |
 
 7. สำหรับ Department ให้เลือกชนิด `Dropdown` แล้วเพิ่มตัวเลือกตามตาราง
 8. กดไอคอนรูปตาด้านบนเพื่อ `Preview` แต่ยังไม่ต้อง Submit
@@ -79,7 +79,7 @@ Connector ทำให้ระบบเข้าถึงบริการไ�
 
 💡 **Why This Matters**  Form เป็น Channel/Input ที่กำหนดโครงสร้างข้อมูลก่อนเข้า Workflow แต่ตัว Form เองไม่ใช่ Agent
 
-✅ **Checkpoint**  เปิด Preview แล้วเห็น 4 คำถาม  แต่ยังไม่ต้องกด Submit
+✅ **Checkpoint**  เปิด Preview แล้วเห็น 4 คำถาม แต่ยังไม่ต้องกด Submit
 
 ## 📌 Step 2 — Link Form Responses to Google Sheets
 
@@ -90,7 +90,7 @@ Connector ทำให้ระบบเข้าถึงบริการไ�
 5. ตั้งชื่อ `Business Request Log` แล้วกด `Create`
 6. เปิด Spreadsheet ที่สร้างขึ้น และเลือก tab เช่น `Form Responses 1`
 7. ตรวจ 5 headers แรกที่ Google Forms สร้างให้อัตโนมัติ
-8. คลิกเซลล์ F1 แล้วเพิ่ม result/tracking columns ทางขวาทีละช่องจนถึง M1:
+8. คลิกเซลล์ F1 แล้วเพิ่ม result/tracking columns ทางขวาทีละช่องจนถึง N1:
 
 ```text
 Timestamp
@@ -146,7 +146,7 @@ Google Sheets → Watch New Rows
 - Limit: `1–3` สำหรับการทดสอบในห้อง
 - Choose where to start: `From now on` สำหรับ Lab นี้
 
-6. ถ้ามีช่อง Table/Range ให้กำหนดตั้งแต่ header row 1 และครอบคลุม A:M
+6. ถ้ามีช่อง Table/Range ให้กำหนดตั้งแต่ header row 1 และครอบคลุม A:N
 7. กด `Save` หรือ `OK`
 
 ![Lab41](assets/Lab2-32-1.png)
@@ -159,12 +159,12 @@ Google Sheets → Watch New Rows
 3. Submit ข้อมูลทดสอบใหม่ 1 รายการ อย่าใช้แถวที่มีอยู่ก่อนเริ่ม Run once
 ตัวอย่าง
 > Requester Name : สมชาย ใจดี <br>
-> Department : Seles <br>
-> Business Request : 	ลูกค้ารายใหญ่ไม่สามารถชำระเงินผ่านระบบได้และแจ้งว่าหากไม่สามารถแก้ไขได้ภายในวันนี้อาจยกเลิกคำสั่งซื้อ <br>
+> Department : Sales <br>
+> Business Request : ลูกค้ารายใหญ่ไม่สามารถชำระเงินผ่านระบบได้ และแจ้งว่าหากไม่สามารถแก้ไขได้ภายในวันนี้ อาจยกเลิกคำสั่งซื้อ <br>
 > Required Date : วันนี้
 
 4. กลับ Make แล้วคลิกตัวเลขใน bubble เหนือ module
-5. ขยาย `Bundle 1` และตรวจว่ามี `Row number`, `Timestamp`, `Request ID`, `Requester`, `Department` และ `Request`
+5. ขยาย `Bundle 1` และตรวจว่ามี `Row number`, `Timestamp`, `Request ID`, `Requester Name`, `Department` และ `Business Request`
 
 > `Watch New Rows` เป็น scheduled trigger ไม่ใช่ instant webhook เมื่อเปิด schedule จริงอาจมีช่วงเวลารอตาม plan ของ Make สำหรับ Workshop ใช้ `Run once` ได้
 
@@ -212,13 +212,13 @@ Gemini ต้องตอบ JSON object เดียวในโครงสร
 1. คลิก `+` หลัง Gemini แล้วค้นหา app `JSON`
 2. เลือก module `Parse JSON`
 3. ที่ช่อง `JSON string` map เฉพาะ text response จาก Gemini
-4. ที่ `Data structure` กด `Add` 
+4. ที่ `Data structure` กด `Add`
 5. ตั้งชื่อ structure `Business Request Classification`
-6. Spacification เลือก Add item → `Generator`Copy sample object จาก [Expected Data Structure](prompts.md#expected-data-structure) แล้วกด `Save`
-7. กด `save` 
+6. ในส่วน `Specification` เลือก `Generator` แล้ว Copy sample object จาก [Expected Data Structure](prompts.md#expected-data-structure) จากนั้นกด `Save`
+7. กด `Save`
 ![json](assets/Lab2-5-1.png)
-8. `Run once` ด้วย response 
-8. คลิก bubble ของ Parse JSON แล้วตรวจว่าได้ 4 fields แยกกัน:
+8. กด `Run once` ด้วย response ใหม่
+9. คลิก bubble ของ Parse JSON แล้วตรวจว่าได้ 4 fields แยกกัน:
 
 ```text
 summary
@@ -277,7 +277,7 @@ priority Equal to LOW
 |---|---|
 | Row number | `Row number` จาก `Watch New Rows` |
 | Timestamp | `Timestamp` จาก `Watch New Rows` |
-| Requester Name| `Requester Name` จาก `Watch New Rows` |
+| Requester Name | `Requester Name` จาก `Watch New Rows` |
 | Department | `Department` จาก `Watch New Rows` |
 | Business Request | `Business Request` จาก `Watch New Rows` |
 | Required Date | `Required Date` จาก `Watch New Rows` |
@@ -286,7 +286,7 @@ priority Equal to LOW
 | Reason | `reason` จาก `Parse JSON` |
 | Recommended Action | `recommended_action` จาก `Parse JSON` |
 
-*** Request ID : เพิ่ม Function ="MM"&TEXT(ROW()-1,"0000")  ใน google sheet 
+> **Request ID:** เพิ่มสูตร `="BR-"&TEXT(ROW()-1,"000")` ใน Google Sheets เพื่อให้ได้รูปแบบ `BR-001`, `BR-002`, ...
 
 ตั้งค่า processing/tracking fields ตาม route:
 
@@ -319,22 +319,22 @@ priority Equal to LOW
 > 🚨 HIGH PRIORITY BUSINESS REQUEST
 
       Requester: {{Requester Name}}
-      Department:{{Department}}
-      Required Date:{{Required Date}}
+      Department: {{Department}}
+      Required Date: {{Required Date}}
 
       Business Request: {{Business Request}}
 
 
       AI Analysis
       -------------------------
-      Summary:{{summary}}
+      Summary: {{summary}}
 
-      Priority:{{priority}}
+      Priority: {{priority}}
 
-      Reason:{{reason}}
+      Reason: {{reason}}
 
 
-      Recommended Action:{{recommended_action}}
+      Recommended Action: {{recommended_action}}
 
 
       Please review and take action immediately.

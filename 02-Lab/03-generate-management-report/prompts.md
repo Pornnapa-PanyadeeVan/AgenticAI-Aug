@@ -105,7 +105,7 @@ Return the complete corrected Thai report.
 
 ```text
 Report Generated At: 2026-08-28 14:00 Asia/Bangkok
-Request ID: MM001
+Request ID: BR-001
 Requester: Demo Requester A
 Department: Sales
 Original Request: ลูกค้ารายใหญ่ไม่สามารถชำระเงินผ่านระบบได้และอาจยกเลิกคำสั่งซื้อ

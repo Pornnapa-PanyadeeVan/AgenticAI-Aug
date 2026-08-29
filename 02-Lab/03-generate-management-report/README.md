@@ -93,7 +93,7 @@ Recommended Action: {{recommended_action from Parse JSON}}
 Current Follow-up Status: OPEN
 ```
 
-ห้ามพิมพ์ Request ID เช่น `MM001` ค้างไว้ใน Prompt ให้ map token ของแถวปัจจุบัน เพื่อให้ทุก HIGH request ใช้ flow เดียวกันได้
+ห้ามพิมพ์ Request ID เช่น `BR-001` ค้างไว้ใน Prompt ให้ map token ของแถวปัจจุบัน เพื่อให้ทุก HIGH request ใช้ flow เดียวกันได้
 
 > หาก `Request ID` เป็นสูตรใน Google Sheets ให้ตรวจว่า Watch New Rows คืนค่าออกมาแล้ว หาก token ยังว่าง ให้แก้สูตร/การเติมสูตรใน Sheet ก่อนทดสอบ PDF ไม่ควรใช้ Request ID ที่พิมพ์เองแทนแถวปัจจุบัน
 
