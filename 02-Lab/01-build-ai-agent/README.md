@@ -30,7 +30,7 @@ Recommendation
 - [ ] Sign in ด้วย Google Account ที่ใช้เฉพาะข้อมูลจำลอง
 - [ ] เปิด [Prompts](prompts.md) ไว้อีก tab
 - [ ] อย่า paste API key หรือข้อมูลจริงลง Prompt
-- [ ] หากเข้า Google AI Studio ไม่ได้ ให้ดู [Troubleshooting](../troubleshooting/README.md#cannot-access-google-ai-studio)
+- [ ] หากเข้า Google AI Studio ไม่ได้ ให้ดู [Troubleshooting](../../troubleshooting/README.md#cannot-access-google-ai-studio)
 
 > **UI MAY VARY:** Google AI Studio เปลี่ยนชื่อ model, layout และตำแหน่ง setting ได้ ให้หา “พื้นที่เริ่ม chat/prompt” และ “พื้นที่กำหนด System Instructions” ตามหน้าที่ หากไม่พบให้เปิด panel ที่เกี่ยวกับ run/model settings คู่มือนี้ไม่บังคับชื่อเมนูตายตัว ดู [Google AI Studio quickstart](https://ai.google.dev/gemini-api/docs/ai-studio-quickstart)
 
@@ -296,9 +296,9 @@ Agent อาจตอบว่า “ควรแจ้ง Manager” แต่�
 | ตอบภาษาอังกฤษ | ตรวจ `Respond in Thai` |
 | Priority มีค่าอื่น | ย้ำ `exactly one of HIGH, MEDIUM, LOW` |
 
-รายละเอียดเพิ่มเติม: [Troubleshooting](../troubleshooting/README.md)
+รายละเอียดเพิ่มเติม: [Troubleshooting](../../troubleshooting/README.md)
 
 
 ---
 
-[← Previous: Introduction](../01-introduction/README.md) · [Home](../README.md) · [Next: Lab 2 →](../../02-build-agentic-workflow/README.md)
+[← Previous: Introduction](../../01-introduction/README.md) · [Home](../../README.md) · [Next: Lab 2 →](../02-build-agentic-workflow/README.md)

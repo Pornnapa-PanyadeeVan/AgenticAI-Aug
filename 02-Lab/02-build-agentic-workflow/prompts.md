@@ -1,6 +1,6 @@
 # Lab 2 — Google Form Workflow Prompts and Test Data
 
-[← Lab 2 Guide](README.md) · [Home](../README.md) · [Next: Lab 3 Prompts →](../04-generate-management-report/prompts.md)
+[← Lab 2 Guide](README.md) · [Home](../../README.md) · [Next: Lab 3 Prompts →](../03-generate-management-report/prompts.md)
 
 > ใช้ simulated data เท่านั้น ปิดการเก็บ email ใน Form ถ้าไม่จำเป็น และห้ามวาง API key ใน Prompt, Form หรือ Sheet
 
@@ -238,4 +238,4 @@ HIGH — HUMAN REVIEW REQUIRED
 
 ---
 
-[← Lab 2 Guide](README.md) · [Home](../README.md) · [Next: Lab 3 Prompts →](../04-generate-management-report/prompts.md)
+[← Lab 2 Guide](README.md) · [Home](../../README.md) · [Next: Lab 3 Prompts →](../03-generate-management-report/prompts.md)

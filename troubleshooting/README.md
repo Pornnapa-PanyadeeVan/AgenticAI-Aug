@@ -1,6 +1,6 @@
 # Troubleshooting Guide
 
-[← Home](../README.md) · [Instructor Checklist](../templates/instructor-checklist.md)
+[← Home](../README.md) · [Instructor Checklist](../02-Lab/templates/instructor-checklist.md)
 
 ทุกหัวข้อมี `Problem → Likely Cause → Quick Fix → Instructor Fallback` เพื่อให้ Workshop เดินต่อได้ภายใน 3 ชั่วโมง
 
@@ -40,7 +40,7 @@
 | **Problem** | ไม่มีตัวเลือกสร้าง key, permission denied หรือหน้าจอขอ billing |
 | **Likely Cause** | Account/admin/country/project restriction หรือ free-tier eligibility ต่างกัน |
 | **Quick Fix** | ตรวจบัญชีและหน้าจัดการ key; ใช้ตัวเลือก free ที่บัญชีมี; ไม่เปิด billing เพื่อ Workshop |
-| **Instructor Fallback** | Lab 1 ต่อได้โดยไม่มี key; Lab 2 ใช้ [fallback JSON](../03-build-agentic-workflow/prompts.md#fallback-json) หรือ Instructor scenario โดยไม่แชร์ key |
+| **Instructor Fallback** | Lab 1 ต่อได้โดยไม่มี key; Lab 2 ใช้ [fallback JSON](../02-Lab/02-build-agentic-workflow/prompts.md#fallback-json) หรือ Instructor scenario โดยไม่แชร์ key |
 
 ## Gemini API quota issue
 
@@ -103,7 +103,7 @@
 | **Problem** | JSON parser error หรือไม่มี 4 fields |
 | **Likely Cause** | Markdown fence, single quotes, trailing comma, ข้อความก่อน/หลัง JSON หรือ output ถูกตัด |
 | **Quick Fix** | ตรวจ raw output, ย้ำ `Return ONLY valid JSON`, ลด verbosity และ run ใหม่หนึ่งครั้ง |
-| **Instructor Fallback** | ใช้ [valid fallback JSON](../03-build-agentic-workflow/prompts.md#fallback-json) แล้วทำขั้นตอนถัดไป |
+| **Instructor Fallback** | ใช้ [valid fallback JSON](../02-Lab/02-build-agentic-workflow/prompts.md#fallback-json) แล้วทำขั้นตอนถัดไป |
 
 ## Update a Row writes the wrong row or creates a duplicate
 
@@ -174,8 +174,8 @@
 |---|---|
 | **Problem** | Report แต่ง root cause/owner/deadline หรือใช้สถานะ RESOLVED ทั้งที่ source ไม่ยืนยัน |
 | **Likely Cause** | Source fields ไม่ครบ, Prompt ไม่บังคับ evidence หรือ AI เติมช่องว่างให้ดูสมบูรณ์ |
-| **Quick Fix** | ใช้ [Correction Prompt](../04-generate-management-report/prompts.md#correction-prompt), แทนข้อมูลที่ขาดด้วย `ไม่พบในข้อมูลต้นทาง` และคง `OPEN` |
-| **Instructor Fallback** | ใช้ [Fallback HIGH Case](../04-generate-management-report/prompts.md#fallback-high-case), ตรวจด้วย checklist และสร้าง DRAFT PDF ด้วยมือ |
+| **Quick Fix** | ใช้ [Correction Prompt](../02-Lab/03-generate-management-report/prompts.md#correction-prompt), แทนข้อมูลที่ขาดด้วย `ไม่พบในข้อมูลต้นทาง` และคง `OPEN` |
+| **Instructor Fallback** | ใช้ [Fallback HIGH Case](../02-Lab/03-generate-management-report/prompts.md#fallback-high-case), ตรวจด้วย checklist และสร้าง DRAFT PDF ด้วยมือ |
 
 ## Workflow does not run
 
@@ -229,7 +229,7 @@
 | **Problem** | Agent ไม่เห็น `input/business-requests.md`, อ่านจำนวน records ผิด หรือข้าม Request IDs |
 | **Likely Cause** | เลือก project folder ผิด, file ไม่ได้ copy เข้า `input/`, permission block หรือ conversation อยู่คนละ project |
 | **Quick Fix** | ตรวจ Project Settings/folder, เปิดไฟล์จาก project view และยืนยัน 4 Request IDs ก่อน approve plan |
-| **Instructor Fallback** | ใช้ Instructor project หรือให้ทีมอ่าน [Antigravity Lab Input](../templates/antigravity-lab-input.md) และตรวจ row count ด้วยตนเอง |
+| **Instructor Fallback** | ใช้ Instructor project หรือให้ทีมอ่าน [Antigravity Lab Input](../02-Lab/templates/business-requests.md) และตรวจ row count ด้วยตนเอง |
 
 ## Agent writes before approval or outside outputs
 
@@ -237,7 +237,7 @@
 |---|---|
 | **Problem** | Agent เริ่มแก้ไฟล์ก่อน Human Proceed, แก้ input หรือสร้างไฟล์นอก `outputs/` |
 | **Likely Cause** | Conversation อยู่ Fast Mode, Artifact Review/Agent Behaviour ไม่ได้ตั้ง Request Review, project scope กว้าง, prompt/plan ไม่ระบุ output allowlist หรือผู้ใช้ approve เร็วเกิน |
-| **Quick Fix** | Stop execution, reject/revert changes, เริ่ม conversation ใหม่ใน Planning Mode, ตั้ง Artifact Review และ Terminal เป็น Request Review, ใช้ dedicated folder แล้วส่ง [Boundary Correction Prompt](../06-antigravity/prompts.md#boundary-correction-prompt) |
+| **Quick Fix** | Stop execution, reject/revert changes, เริ่ม conversation ใหม่ใน project เดิม, ตั้ง Artifact Review เป็น Always Ask, ใช้ dedicated folder แล้วส่ง [Boundary Correction Prompt](../02-Lab/04-antigravity/prompts.md#boundary-correction-prompt) |
 | **Instructor Fallback** | ใช้ prepared plan/file diff ให้ทีมระบุว่าจุดใดควรถูก reject ก่อนดำเนินการ |
 
 ## Antigravity does not show Proceed or pauses in a different place
@@ -255,7 +255,7 @@
 |---|---|
 | **Problem** | Agent เสนอ app, browser, URL, MCP, Connector, schedule, package install, email หรือ access นอก project |
 | **Likely Cause** | Goal กว้าง, project permission กว้าง หรือข้อห้ามไม่อยู่ใน reviewed plan |
-| **Quick Fix** | Reject permission, กด Stop และใช้ [Boundary Correction Prompt](../06-antigravity/prompts.md#boundary-correction-prompt); อย่าเพิ่มสิทธิ์เพื่อให้ task ผ่าน |
+| **Quick Fix** | Reject permission, กด Stop และใช้ [Boundary Correction Prompt](../02-Lab/04-antigravity/prompts.md#boundary-correction-prompt); อย่าเพิ่มสิทธิ์เพื่อให้ task ผ่าน |
 | **Instructor Fallback** | ใช้ prepared analysis-only artifacts แล้วอภิปราย Prompt guardrail เทียบกับ Permission guardrail |
 
 ## Antigravity triage or HIGH reports fail validation
@@ -264,7 +264,7 @@
 |---|---|
 | **Problem** | Row count ไม่ใช่ 4, HIGH report count ไม่ตรง HIGH rows, file ซ้ำ/หาย, แต่ง facts หรืออ้างว่าทำ Action แล้ว |
 | **Likely Cause** | Agent ข้าม record, input context หาย, hallucination, filename ไม่ตรง plan หรือ validation ไม่ถูกทำ |
-| **Quick Fix** | ตรวจ checklist ใน Lab 4 และใช้ [Validation Prompt](../06-antigravity/prompts.md#validation-prompt) โดยอนุญาตให้แก้เฉพาะ approved files ใน `outputs/` |
+| **Quick Fix** | ตรวจ Quick Review ใน Lab 4 แล้วใช้ [Boundary Correction Prompt](../02-Lab/04-antigravity/prompts.md#boundary-correction-prompt) โดยให้แก้เฉพาะ `outputs/business-request-management-report.md` |
 | **Instructor Fallback** | ให้ทีมทำ reviewer role ระบุ fail points และเปรียบเทียบกับ deterministic validation ใน Make |
 
 ## Escalation Rule
@@ -283,4 +283,4 @@ Paper/Sheet Simulation
 
 ---
 
-[← Home](../README.md) · [Instructor Checklist](../templates/instructor-checklist.md)
+[← Home](../README.md) · [Instructor Checklist](../02-Lab/templates/instructor-checklist.md)

@@ -1,6 +1,6 @@
 # Lab 1 — Copy/Paste Prompts
 
-[← Lab 1 Guide](README.md) · [Home](../README.md) · [Next: Lab 2 Prompts →](../03-build-agentic-workflow/prompts.md)
+[← Lab 1 Guide](README.md) · [Home](../../README.md) · [Next: Lab 2 Prompts →](../02-build-agentic-workflow/prompts.md)
 
 Prompts หลักเขียนเป็น English เพื่อให้ instruction ชัดเจน และกำหนดให้ output เป็นภาษาไทย ใช้เฉพาะข้อมูลจำลอง
 
@@ -168,4 +168,4 @@ Expected behavior: ยังใช้ Business Rules และไม่ยอม
 
 ---
 
-[← Lab 1 Guide](README.md) · [Home](../README.md) · [Next: Lab 2 Prompts →](../03-build-agentic-workflow/prompts.md)
+[← Lab 1 Guide](README.md) · [Home](../../README.md) · [Next: Lab 2 Prompts →](../02-build-agentic-workflow/prompts.md)

@@ -1,6 +1,6 @@
 # Lab 2: Build an Agentic Workflow with Make — Step by Step
 
-[← Previous: Lab 1](../01-build-ai-agent/README.md) · [Home](../README.md) · [Next: Lab 3 →](../03-generate-management-report/README.md)
+[← Previous: Lab 1](../01-build-ai-agent/README.md) · [Home](../../README.md) · [Next: Lab 3 →](../03-generate-management-report/README.md)
 
 🎯 **Goal**  รับ Business Request จาก Google Form ให้ Google Sheets เก็บคำตอบ แล้วใช้ Make + Gemini วิเคราะห์และเขียนผลกลับแถวเดิม โดยส่ง Gmail เฉพาะรายการ `HIGH`
 
@@ -46,9 +46,9 @@ Router
 - **Connector:** connection พร้อม authentication และ permission ที่ให้ Make เข้าถึง Gemini, Google Sheets หรือ Gmail
 - **Workflow:** Make ประสาน Form response → AI → JSON → Router → Update/Alert
 
-Connector ทำให้ระบบเข้าถึงบริการได้ แต่ไม่ได้ตัดสินว่าควรทำอะไร ใช้เฉพาะ Form, Sheet และอีเมลทดสอบตามหลัก Least Privilege ดูเพิ่มที่ [Connector ใน Glossary](../01-introduction/glossary.md#connector)
+Connector ทำให้ระบบเข้าถึงบริการได้ แต่ไม่ได้ตัดสินว่าควรทำอะไร ใช้เฉพาะ Form, Sheet และอีเมลทดสอบตามหลัก Least Privilege ดูเพิ่มที่ [Connector ใน Glossary](../../01-introduction/glossary.md#connector)
 
-> **MCP clarification:** Lab นี้ใช้ native connectors ของ Make ไม่ได้ติดตั้ง MCP Client/Server จึงไม่ควรเรียกทุก connection ว่า MCP ดูความแตกต่างที่ [MCP ใน Glossary](../01-introduction/glossary.md#mcp-model-context-protocol)
+> **MCP clarification:** Lab นี้ใช้ native connectors ของ Make ไม่ได้ติดตั้ง MCP Client/Server จึงไม่ควรเรียกทุก connection ว่า MCP ดูความแตกต่างที่ [MCP ใน Glossary](../../01-introduction/glossary.md#mcp-model-context-protocol)
 
 
 ## Make.com คือ?
@@ -405,4 +405,4 @@ Agentic Workflow: Trigger → AI Reasoning → Decision → Tool → Action
 
 ---
 
-[← Previous: Lab 1](../02-build-ai-agent/README.md) · [Home](../README.md) · [Next: Lab 3 →](../04-generate-management-report/README.md)
+[← Previous: Lab 1](../01-build-ai-agent/README.md) · [Home](../../README.md) · [Next: Lab 3 →](../03-generate-management-report/README.md)

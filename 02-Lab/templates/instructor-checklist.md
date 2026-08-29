@@ -1,6 +1,6 @@
 # Instructor Checklist — 50-person Workshop
 
-[← Home](../README.md) · [Troubleshooting](../troubleshooting/README.md)
+[← Home](../../README.md) · [Troubleshooting](../../troubleshooting/README.md)
 
 ใช้ checklist นี้ก่อนสอน `Build Your First Agentic AI for Business` ทุกครั้ง เพราะ free-tier eligibility, quota และ UI เปลี่ยนได้
 
@@ -52,14 +52,14 @@
 
 ### Materials
 
-- [ ] เปิดลิงก์ทุก Lab จาก [README](../README.md)
-- [ ] ส่ง [Glossary คำศัพท์พื้นฐาน](../01-introduction/glossary.md) เป็น pre-read และเตรียมอธิบาย Agent, Skill, Tool, Connector, MCP, Workflow, Guardrail
+- [ ] เปิดลิงก์ทุก Lab จาก [README](../../README.md)
+- [ ] ส่ง [Glossary คำศัพท์พื้นฐาน](../../01-introduction/glossary.md) เป็น pre-read และเตรียมอธิบาย Agent, Skill, Tool, Connector, MCP, Workflow, Guardrail
 - [ ] ตรวจ Previous / Home / Next navigation
 - [ ] เตรียม [Sample Requests](sample-requests.md) อย่างน้อย 20 รายการ
 - [ ] เตรียม Google Form และ linked response sheet สำหรับ Lab 2 fallback
 - [ ] เตรียมสำเนา sample data ใน Sheet ของผู้สอน
-- [ ] เตรียม fallback JSON จาก [Lab 2 Prompts](../03-build-agentic-workflow/prompts.md#fallback-json)
-- [ ] เตรียม fallback HIGH case และ Situation Report จาก [Lab 3 Prompts](../04-generate-management-report/prompts.md)
+- [ ] เตรียม fallback JSON จาก [Lab 2 Prompts](../02-build-agentic-workflow/prompts.md#fallback-json)
+- [ ] เตรียม fallback HIGH case และ Situation Report จาก [Lab 3 Prompts](../03-generate-management-report/prompts.md)
 - [ ] เตรียม [Antigravity Lab Input](business-requests.md) และ [Lab 4 Prompts](../04-antigravity/prompts.md)
 - [ ] Run Antigravity project ล่วงหน้าและเก็บ Instructor fallback ที่เห็น short plan, human proceed และ `business-request-management-report.md`
 - [ ] เตรียม blank Google Doc และ Drive folders สำหรับ fallback
@@ -70,7 +70,7 @@
 
 ### Screenshots and Demo
 
-- [ ] ถ่าย screenshot ตาม [Screenshot Guide](../images/README.md)
+- [ ] ตรวจรายการภาพประกอบในคู่มือของแต่ละ Lab
 - [ ] ถ่าย Lab 2 ให้ครบ `L2-01` ถึง `L2-17` และ Lab 3 ให้ครบ `L3-01` ถึง `L3-13`
 - [ ] เตรียมภาพหลัก Lab 4: Create Project, Guardrails, Agent Plan และ Plan Approval
 - [ ] ปิด API key, email, IDs และ webhook URLs ในทุกภาพ
@@ -234,4 +234,4 @@ Learning Objective คือการเปรียบเทียบ orchestra
 
 ---
 
-[← Home](../README.md) · [Troubleshooting](../troubleshooting/README.md)
+[← Home](../../README.md) · [Troubleshooting](../../troubleshooting/README.md)

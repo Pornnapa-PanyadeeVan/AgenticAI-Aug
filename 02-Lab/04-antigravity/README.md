@@ -34,6 +34,10 @@ outputs/business-request-management-report.md
 
 ## Antigravity ใน Lab นี้ทำอะไร
 
+Google Antigravity คือเครื่องมือ AI สำหรับช่วยทำงานแบบ AI Coding Agent ที่สามารถรับเป้าหมายจากเรา แล้วช่วย วางแผน เขียน/แก้โค้ด รันคำสั่ง และตรวจผลลัพธ์ ในโปรเจกต์ได้ 
+
+>AI Agent ที่ช่วย “ลงมือทำงานในโปรเจกต์” ไม่ใช่แค่ตอบคำถามหรือสร้างข้อความ
+
 ```text
 Human gives one bounded task
 ↓
@@ -224,19 +228,7 @@ lab4-antigravity-business-triage/
 1. ส่วนใดแสดงว่า Antigravity ทำงานแบบ Agent มากกว่า Chatbot?
 2. ถ้างานนี้ต้องรันทุก 5 นาที เหตุใด Make จึงเหมาะกว่า?
 
-## Fallback เมื่อเวลา/Quota ไม่พอ
 
-ให้ผู้เรียนทำถึงขั้น Agent แสดง Plan แล้วตรวจ Quick Plan Review จากนั้นผู้สอนเปิดตัวอย่าง report ที่เตรียมไว้ การเห็น `Goal → Plan → Approval Boundary` ยังครอบคลุมแนวคิดหลักของ Lab
-
-## 🏁 Completed
-
-- [ ] ใช้ dedicated project และ simulated input
-- [ ] ส่งงานเดียวด้วย Primary Agent Task Prompt
-- [ ] Review แผนสั้น ๆ ก่อน Proceed
-- [ ] Agent สร้าง `business-request-management-report.md` เพียงไฟล์เดียว
-- [ ] Triage ครบและมี DRAFT follow-up เฉพาะ HIGH
-- [ ] ไม่มี external action หรือ permission เกินขอบเขต
-- [ ] เปรียบเทียบ Make กับ Antigravity ได้
 
 ---
 

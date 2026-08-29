@@ -1,6 +1,6 @@
 # คำศัพท์พื้นฐาน Agentic AI สำหรับผู้เรียน MBA
 
-[← Introduction](README.md) · [Home](../README.md) · [Next: Lab 1 →](../02-build-ai-agent/README.md)
+[← Introduction](README.md) · [Home](../README.md) · [Next: Lab 1 →](../02-Lab/01-build-ai-agent/README.md)
 
 ใช้หน้านี้เป็น pre-read หรือ reference ระหว่าง Workshop ไม่ต้องท่องจำทุกคำ ให้จำว่าองค์ประกอบทั้งหมดอยู่ใน end-to-end Agentic AI Path เดียวกัน:
 
@@ -288,4 +288,4 @@ Skill อาจประกอบด้วย:
 
 ---
 
-[← Introduction](README.md) · [Home](../README.md) · [Next: Lab 1 →](../02-build-ai-agent/README.md)
+[← Introduction](README.md) · [Home](../README.md) · [Next: Lab 1 →](../02-Lab/01-build-ai-agent/README.md)
