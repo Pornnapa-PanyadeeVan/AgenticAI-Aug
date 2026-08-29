@@ -1,4 +1,4 @@
-# 03 — Lab 2: Build an Agentic Workflow with Make — Step by Step
+# Lab 2: Build an Agentic Workflow with Make — Step by Step
 
 [← Previous: Lab 1](../01-build-ai-agent/README.md) · [Home](../README.md) · [Next: Lab 3 →](../03-generate-management-report/README.md)
 
@@ -124,7 +124,7 @@ Request ID
 4. คลิกชื่อ Scenario ด้านบนแล้วตั้งชื่อ `Lab 2 — Business Request`
 5. ตรวจว่าสวิตช์ Scheduling ยังเป็น `OFF`
 
-![Lab41](assets/Lab2-41.png)
+![Lab41](assets/Lab2-31.png)
 
 ### 3.2 เพิ่ม Trigger
 
@@ -149,8 +149,8 @@ Google Sheets → Watch New Rows
 6. ถ้ามีช่อง Table/Range ให้กำหนดตั้งแต่ header row 1 และครอบคลุม A:M
 7. กด `Save` หรือ `OK`
 
-![Lab41](assets/Lab2-42-1.png)
-![Lab41](assets/Lab2-42-2.png)
+![Lab41](assets/Lab2-32-1.png)
+![Lab41](assets/Lab2-32-2.png)
 
 ลำดับการทดสอบ trigger:
 
@@ -168,7 +168,7 @@ Google Sheets → Watch New Rows
 
 > `Watch New Rows` เป็น scheduled trigger ไม่ใช่ instant webhook เมื่อเปิด schedule จริงอาจมีช่วงเวลารอตาม plan ของ Make สำหรับ Workshop ใช้ `Run once` ได้
 
-![Lab41](assets/Lab2-42-3.png)
+![Lab41](assets/Lab2-32-3.png)
 
 ⚠️ **Common Problem**  ถ้า Make ไม่พบแถว ให้กด `Run once` ก่อน Submit รายการใหม่ ตรวจชื่อ tab และ starting point อย่า Submit ซ้ำรัว ๆ
 
@@ -184,8 +184,8 @@ Google Sheets → Watch New Rows
 6. ทำแบบเดียวกันกับ `Department` และ `Request` ห้ามพิมพ์ค่าทดสอบค้างไว้แบบ hard-code
 7. กด `OK`
 
-![Gemini5](assets/Lab2-5-1.png)
-![Output5](assets/Lab2-5-1.png)
+![Gemini5](assets/Lab2-4-1.png)
+![Output5](assets/Lab2-4-1.png)
 
 Gemini ต้องตอบ JSON object เดียวในโครงสร้างนี้:
 
@@ -211,10 +211,12 @@ Gemini ต้องตอบ JSON object เดียวในโครงสร
 1. คลิก `+` หลัง Gemini แล้วค้นหา app `JSON`
 2. เลือก module `Parse JSON`
 3. ที่ช่อง `JSON string` map เฉพาะ text response จาก Gemini
-4. ที่ `Data structure` กด `Add` → `Generator`
-5. Copy sample object จาก [Expected Data Structure](prompts.md#expected-data-structure) แล้วกด `Save`
-6. ตั้งชื่อ structure `Business Request Classification`
-7. กด `OK` แล้ว `Run once` ด้วย response ใหม่อีกหนึ่งรายการ
+4. ที่ `Data structure` กด `Add` 
+5. ตั้งชื่อ structure `Business Request Classification`
+6. Spacification เลือก Add item → `Generator`Copy sample object จาก [Expected Data Structure](prompts.md#expected-data-structure) แล้วกด `Save`
+7. กด `save` 
+![json](assets/Lab2-5-1.png)
+8. `Run once` ด้วย response 
 8. คลิก bubble ของ Parse JSON แล้วตรวจว่าได้ 4 fields แยกกัน:
 
 ```text
@@ -223,12 +225,8 @@ priority
 reason
 recommended_action
 ```
+![json output](assets/Lab2-5-2.png)
 
-✅ **Checkpoint**  เลือก field `priority` เดี่ยว ๆ ไปใช้ใน filter ได้
-
-⚠️ **Common Problem**  หาก Parse ไม่ผ่าน ให้ตรวจ quote, comma, code fence และย้ำ `Return ONLY valid JSON` ดู [Troubleshooting](../troubleshooting/README.md#json-cannot-parse)
-
-> 📷 **L2-10 — JSON data structure and output**: ให้เห็นชื่อ 4 fields และ sample value โดยไม่เห็น secret
 
 ## 📌 Step 6 — Complete the Router
 
@@ -260,9 +258,8 @@ priority Equal to LOW
 
 💡 **Why This Matters**  Router คือ Decision step: ผล AI ไม่ได้เป็นเพียงข้อความ แต่กำหนดว่า Workflow จะทำอะไรต่อ
 
-✅ **Checkpoint**  `HIGH` เข้า Route 1 ส่วน `MEDIUM` และ `LOW` เข้า Route 2 เท่านั้น
-
-> 📷 **L2-11 — Router filters**: ให้เห็นชื่อ route, operator `Equal to` และ OR group ของ MEDIUM/LOW
+![router](assets/Lab2-6-1.png)
+![router](assets/Lab2-6-2.png)
 
 ## 📌 Step 7 — Update the Same Row on Both Routes
 
@@ -280,14 +277,16 @@ priority Equal to LOW
 |---|---|
 | Row number | `Row number` จาก `Watch New Rows` |
 | Timestamp | `Timestamp` จาก `Watch New Rows` |
-| Request ID | `Request ID` จาก `Watch New Rows` |
-| Requester | `Requester` จาก `Watch New Rows` |
+| Requester Name| `Requester Name` จาก `Watch New Rows` |
 | Department | `Department` จาก `Watch New Rows` |
-| Request | `Request` จาก `Watch New Rows` |
+| Business Request | `Business Request` จาก `Watch New Rows` |
+| Required Date | `Required Date` จาก `Watch New Rows` |
 | Summary | `summary` จาก `Parse JSON` |
 | Priority | `priority` จาก `Parse JSON` |
 | Reason | `reason` จาก `Parse JSON` |
 | Recommended Action | `recommended_action` จาก `Parse JSON` |
+
+*** Request ID : เพิ่ม Function ="MM"&TEXT(ROW()-1,"0000")  ใน google sheet 
 
 ตั้งค่า processing/tracking fields ตาม route:
 
@@ -296,14 +295,7 @@ priority Equal to LOW
 | HIGH | `HIGH — HUMAN REVIEW REQUIRED` | `NOT STARTED` | เว้นว่าง | `OPEN` |
 | MEDIUM/LOW | `TRIAGED` | `NOT REQUIRED` | เว้นว่าง | `NOT REQUIRED` |
 
-> ต้องใช้ `Update a Row` และ map `Row number` จาก trigger เพื่อเขียนผลกลับแถวที่ Form สร้างไว้ ห้ามใช้ `Add a Row` ในขั้นนี้ เพราะจะสร้างแถวซ้ำ
-
-> Map ค่าคำตอบเดิมกลับไปด้วย หาก module ที่บัญชีแสดงเขียนทั้งแถว เพราะ field ที่ปล่อยว่างอาจถูกล้างได้
-
-> 📷 **L2-12 — HIGH Update a Row**: ให้เห็น Row number token, AI result mappings และ HIGH tracking statuses
-
-> 📷 **L2-13 — MEDIUM/LOW Update a Row**: ให้เห็น Row number token และ `TRIAGED / NOT REQUIRED`
-
+![Update Data](assets/Lab2-7-1.png)
 ✅ **Checkpoint**  Submit Form 1 ครั้งแล้ว Sheet ยังมีเพียง 1 response row และมีผลวิเคราะห์ครบในแถวเดียวกัน
 
 ## 📌 Step 8 — Send Gmail Only for HIGH
