@@ -166,6 +166,7 @@ Current Follow-up Status: OPEN
 | Follow-up Status | `OPEN` |
 | Request ID | Request ID จาก Watch New Rows |
 
+![Output Gemini Lab3](assets/Lab03-6.png)
 
 ## 📌 Step 7 — Optional Gmail to Self
 
@@ -185,7 +186,7 @@ Current Follow-up Status: OPEN
 7. ถ้า attachment mapping ไม่พร้อม ให้ส่ง restricted Drive link แทน
 8. ตรวจว่า HIGH request หนึ่งรายการส่งอีเมลไม่เกินหนึ่งฉบับ
 
-
+![Output Gemini Lab3](assets/Lab03-7.png)
 
 ## 📌 Step 8 — Save and Run the Extended Scenario Once
 
