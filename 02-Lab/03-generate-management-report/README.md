@@ -35,21 +35,12 @@ Router
    → Update the Same Row
 ```
 
+![Overview](assets/Lab3-overview.png)
+
 การต่อจาก Router โดยตรงทำให้ใช้ `Row number`, ข้อมูลคำร้อง และผลวิเคราะห์จาก bundle ปัจจุบันได้ทันที ไม่ต้องค้นหา Request ID ซ้ำ
 
 > รายงานคือ **Decision Support + Follow-up Artifact** ไม่ใช่คำสั่งอนุมัติ ไม่ใช่หลักฐานว่าสาเหตุได้รับการยืนยัน และไม่ใช่การแก้สถานการณ์อัตโนมัติ
 
-## ก่อนเริ่ม
-
-- [ ] ทำ Lab 2 ถึงขั้นมี `Watch New Rows → Gemini → Parse JSON → Router`
-- [ ] HIGH route ใช้ filter `priority Equal to HIGH`
-- [ ] HIGH และ MEDIUM/LOW มี `Google Sheets — Update a Row`
-- [ ] Sheet มี columns สำหรับ `Report Status`, `Report Link`, `Follow-up Status` และ `Request ID`
-- [ ] ใช้ข้อมูลจำลองเท่านั้น
-- [ ] เปิด [Lab 3 Prompts](prompts.md) อีก tab
-- [ ] Scenario Scheduling เป็น `OFF`
-
-> **UI MAY VARY:** ชื่อ module และช่องของ Google Drive/Docs อาจต่างกันตาม Make version และบัญชี ให้ยึดหน้าที่ `create text document → download as PDF → upload PDF` หาก connector ไม่มี module ที่ต้องการ ให้ใช้ [Manual Document Fallback](#manual-document-fallback)
 
 ## 📌 Step 1 — Prepare a Restricted Drive Folder
 
@@ -60,11 +51,7 @@ Router
 5. ตรวจว่า `General access = Restricted`
 6. ไม่เลือก `Anyone with the link` และไม่เพิ่มผู้รับจริงใน Workshop
 
-> 📷 **L3-01 — Restricted Drive folder**: ให้เห็น path `Agentic-AI-Reports/HIGH-Follow-up` และ General access = Restricted โดยปิดชื่อบัญชี
 
-✅ **Checkpoint**  Folder สำหรับรายงานอยู่ใน Drive ของตนเองและ permission เป็น Restricted
-
-⚠️ **Common Problem**  ถ้าเป็น Shared Drive และแก้ permission ไม่ได้ ให้ใช้ My Drive ของตนเองหรือใช้ manual fallback
 
 ## 📌 Step 2 — Reopen the Lab 2 Scenario
 
@@ -77,9 +64,6 @@ Router
 
 หาก HIGH route มี Gmail ต่อท้ายอยู่แล้ว ให้แทรก report modules ของ Lab 3 **ระหว่าง Update a Row กับ Gmail** เพื่อให้ Gmail ส่ง restricted link หรือแนบ PDF ได้ หาก UI แทรก module ระหว่างเส้นไม่ได้ ให้ย้าย Gmail ไปท้าย route หลังทำ Step 8
 
-> 📷 **L3-02 — Existing Lab 2 HIGH route**: ให้เห็น Router, HIGH filter, HIGH Update a Row และ MEDIUM/LOW route ใน Scenario เดิม
-
-✅ **Checkpoint**  กำลังแก้ Scenario ของ Lab 2 เดิม และเพิ่ม module เฉพาะ HIGH route
 
 ## 📌 Step 3 — Generate the DRAFT Situation Report
 
@@ -113,9 +97,7 @@ Current Follow-up Status: OPEN
 
 > หาก `Request ID` เป็นสูตรใน Google Sheets ให้ตรวจว่า Watch New Rows คืนค่าออกมาแล้ว หาก token ยังว่าง ให้แก้สูตร/การเติมสูตรใน Sheet ก่อนทดสอบ PDF ไม่ควรใช้ Request ID ที่พิมพ์เองแทนแถวปัจจุบัน
 
-> 📷 **L3-03 — Report prompt mapping**: ให้เห็น prompt และ tokens จาก Watch New Rows/Parse JSON โดยไม่เห็น secret
-
-✅ **Checkpoint**  Report prompt รับข้อมูลจาก HIGH bundle ปัจจุบันและไม่มีข้อมูลทดสอบที่ hard-code ไว้
+![Gemini Lab3](assets/Lab03-3.png)
 
 ## 📌 Step 4 — Run a Draft-only Test
 
@@ -137,33 +119,10 @@ Current Follow-up Status: OPEN
 
 > Watch New Rows ประมวลผลแถวใหม่ จึงต้อง Submit test row หลังจากกด Run once ไม่ควรคาดหวังให้แถว HIGH เก่าจาก Lab 2 วิ่งเข้า module ที่เพิ่งเพิ่มโดยอัตโนมัติ
 
-> 📷 **L3-04 — Draft report output**: ให้เห็น DRAFT banner, Request ID, missing information และ Human Review section
+![Output Gemini Lab3](assets/Lab03-4.png)
 
-✅ **Checkpoint**  Draft อ้างอิง Request ID ของ bundle ปัจจุบันและไม่แต่งข้อเท็จจริง
 
-## 📌 Step 5 — Add a Structural Validation Filter
-
-Filter นี้ช่วยกัน output ที่ผิดโครงสร้าง แต่ **ไม่แทนการอ่านและอนุมัติของคน**
-
-1. เพิ่ม module ถัดจาก Report Gemini แล้วคลิกเส้นเชื่อมก่อน module นั้น
-2. เลือก `Set up a filter`
-3. ตั้งชื่อ `Draft report passed`
-4. ตั้ง conditions แบบ `AND`:
-
-| Check | Condition |
-|---|---|
-| Source priority | `priority` จาก Parse JSON `Equal to` `HIGH` |
-| Draft label | Report Gemini text `Contains` `DRAFT — HIGH PRIORITY — HUMAN REVIEW REQUIRED` |
-| Traceability | Report Gemini text `Contains` Request ID จาก Watch New Rows |
-| Open status | Report Gemini text `Does not contain` `RESOLVED` |
-
-> Filter ตรวจรูปแบบและ traceability เท่านั้น คนยังต้องตรวจ evidence, unsupported claims และความเหมาะสมของ recommended actions
-
-> 📷 **L3-05 — Report validation filter**: ให้เห็นชื่อ filter และเงื่อนไขทั้ง 4 ข้อ
-
-✅ **Checkpoint**  Draft ที่ไม่มี label, ไม่มี Request ID หรือเขียน `RESOLVED` จะไม่ผ่านไปสร้าง PDF
-
-## 📌 Step 6 — Create a Google Document from the Draft
+## 📌 Step 5 — Create a Google Document from the Draft
 
 1. คลิก `+` หลัง validation filter
 2. เลือก `Google Drive → Create a File from Text`
@@ -180,15 +139,13 @@ Filter นี้ช่วยกัน output ที่ผิดโครงส�
 
 Map Request ID จาก `Watch New Rows` และใช้วันที่จาก Make date function หากทำได้
 
-> 📷 **L3-06 — Create a File from Text**: ให้เห็น restricted folder, filename tokens, content mapping และ Convert to Google Docs = Yes
-
-✅ **Checkpoint**  เมื่อ HIGH bundle ผ่าน filter แล้ว Drive มี Google Document ที่ชื่ออ้างอิง Request ID เดียวกัน
+![Output Gemini Lab3](assets/Lab03-5.png)
 
 ⚠️ **Common Problem**  ถ้าได้ไฟล์ `.txt` ให้ตรวจ `Convert to Google Docs = Yes` ถ้าบัญชีไม่มีตัวเลือกนี้ ใช้ `Google Docs → Create a Document` หรือ [Manual Document Fallback](#manual-document-fallback)
 
-## 📌 Step 7 — Convert to PDF and Upload It
+## 📌 Step 6 — Convert to PDF and Upload It
 
-### 7.1 Download the Google Document as PDF
+### 6.1 Download the Google Document as PDF
 
 1. คลิก `+` หลัง Create a File from Text
 2. เลือก `Google Drive → Download a File`
@@ -198,7 +155,7 @@ Map Request ID จาก `Watch New Rows` และใช้วันที่�
 
 > 📷 **L3-07 — Download as PDF**: ให้เห็น File ID token และ PDF export format
 
-### 7.2 Upload the PDF
+### 6.2 Upload the PDF
 
 1. คลิก `+` หลัง Download a File
 2. เลือก `Google Drive → Upload a File`
@@ -224,7 +181,7 @@ Map Request ID จาก `Watch New Rows` และใช้วันที่�
 
 ⚠️ **Alternative module path**  ถ้า Google Drive `Download a File` ไม่ให้เลือก PDF ให้ใช้ `Google Docs → Download a Document` แล้วเลือก PDF จากนั้น map binary output เข้า Upload a File
 
-## 📌 Step 8 — Update the Same Request Row
+## 📌 Step 7 — Update the Same Request Row
 
 1. คลิก `+` หลัง Upload a File
 2. เลือก `Google Sheets → Update a Row`
@@ -254,7 +211,7 @@ Map Request ID จาก `Watch New Rows` และใช้วันที่�
 
 ⚠️ **Common Problem**  ถ้าข้อมูลเดิมหาย แปลว่า Update a Row เขียนทั้งแถวแต่ map ค่าเดิมกลับไม่ครบ ให้ตรวจ mapping ทุก column ก่อนทดสอบรายการถัดไป
 
-## 📌 Step 9 — Optional Gmail to Self
+## 📌 Step 8 — Optional Gmail to Self
 
 ข้ามขั้นนี้ได้หาก Gmail connection ไม่พร้อม PDF + tracker ที่อัปเดตแล้วถือว่าผ่าน Lab
 
@@ -276,7 +233,7 @@ Map Request ID จาก `Watch New Rows` และใช้วันที่�
 
 ✅ **Checkpoint**  อีเมลระบุ DRAFT/Human Review และไม่มีผู้รับภายนอก
 
-## 📌 Step 10 — Save and Run the Extended Scenario Once
+## 📌 Step 9 — Save and Run the Extended Scenario Once
 
 1. กด `Save`
 2. ตรวจ Scheduling = `OFF`

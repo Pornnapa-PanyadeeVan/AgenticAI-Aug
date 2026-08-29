@@ -1,6 +1,6 @@
-# 06 — Lab 4: Google Antigravity — Solve Lab 2 + Lab 3 without Building a Workflow — Step by Step
+# Lab 4: Google Antigravity — Solve Lab 2 + Lab 3 without Building a Workflow — Step by Step
 
-[← Previous: LINE OA Demo](../05-line-oa-demo/README.md) · [Home](../README.md) · [Next: Responsible AI →](../07-responsible-agentic-ai/README.md)
+[← Previous: LINE OA Demo](../03-generate-management-report/) · [Home](../README.md) 
 
 🎯 **Goal**  ให้ Google Antigravity รับ Goal และไฟล์คำร้องจำลอง วางแผนเอง แล้วสร้าง Request Triage กับ DRAFT Situation & Follow-up Report สำหรับทุก HIGH case โดยผู้เรียนไม่ประกอบ Make Workflow ทีละ module
 
