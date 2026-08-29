@@ -58,7 +58,7 @@ Connector ทำให้ระบบเข้าถึงบริการไ�
 ## 📌 Step 1 — Create the Google Form
 
 1. เปิด [Google Forms](https://forms.google.com/) แล้วกด `Blank form` หรือปุ่ม `+`
-2. คลิกชื่อ `Untitled form` แล้วตั้งชื่อ `Business Request Intake — Workshop`
+2. คลิกชื่อ `Untitled form` แล้วตั้งชื่อ `Business Request Form - Workshop`
 3. คลิกช่องคำอธิบายใต้ชื่อ Form แล้วใส่ `ใช้ข้อมูลจำลองเท่านั้น ห้ามกรอกข้อมูลจริงหรือข้อมูลลับ`
 4. กด `Settings` แล้วตรวจว่าไม่ได้เปิดเก็บ email address หรือจำกัดผู้ตอบโดยไม่จำเป็น
 5. กลับแท็บ `Questions` กดปุ่ม `+` ทางขวาเพื่อเพิ่มคำถามทีละข้อ
@@ -113,15 +113,12 @@ Request ID
 
 💡 **Why This Matters**  Google Sheets ทำหน้าที่เป็น business data storage และ follow-up tracker แบบง่าย HIGH row จะส่งต่อให้ Lab 3 สร้าง Situation & Follow-up PDF ไม่ใช่ long-term production database
 
-✅ **Checkpoint**  Sheet มี 13 columns และ `Summary` ถึง `Follow-up Status` ยังว่าง
-
-⚠️ **Common Problem**  Make มองไม่เห็น columns หาก header ว่างหรือซ้ำ ให้แก้ header แล้ว refresh/reselect data structure ใน connection
 
 ## 📌 Step 3 — Create a Gemini API Key
 
 > ⚠️ **SECURITY: Never paste your API key into Form, Sheet, Prompt, screenshot, chat หรือ public GitHub files.**
 
-1. เปิดหน้าจัดการ API keys จาก [Google AI Studio](https://aistudio.google.com/)
+1. เปิดหน้าจัดการ API keys จาก [Google AI Studio](https://aistudio.google.com/api-keys?project=gen-lang-client-0461368862)
 2. สร้าง key สำหรับบัญชี/โปรเจกต์ของตนเองตามตัวเลือกที่หน้า UI แสดง
 3. คัดลอก key ไปใส่ใน Make connection โดยตรง
 4. ไม่ส่ง key ให้เพื่อนและไม่ใช้ shared instructor key
@@ -147,10 +144,10 @@ Request ID
 1. เปิด [Make](https://www.make.com/) แล้วเข้าสู่ระบบ
 2. จากหน้า Dashboard เลือก `Scenarios`
 3. กด `Create a new scenario`
-4. คลิกชื่อ Scenario ด้านบนแล้วตั้งชื่อ `Lab 2 — Business Request Triage`
+4. คลิกชื่อ Scenario ด้านบนแล้วตั้งชื่อ `Lab 2 — Business Request`
 5. ตรวจว่าสวิตช์ Scheduling ยังเป็น `OFF`
 
-> 📷 **L2-06 — Empty Make scenario**: ให้เห็นชื่อ Scenario, canvas ว่าง และ Scheduling = OFF
+![Lab41](assets/Lab2-41.png)
 
 ### 4.2 เพิ่ม Trigger
 
@@ -175,21 +172,26 @@ Google Sheets → Watch New Rows
 6. ถ้ามีช่อง Table/Range ให้กำหนดตั้งแต่ header row 1 และครอบคลุม A:M
 7. กด `Save` หรือ `OK`
 
-> 📷 **L2-07 — Watch New Rows settings**: ให้เห็น Spreadsheet, Sheet, headers, range/limit และปิดข้อมูลบัญชี
+![Lab41](assets/Lab2-42-1.png)
+![Lab41](assets/Lab2-42-2.png)
 
 ลำดับการทดสอบ trigger:
 
 1. กด `Run once` มุมล่างซ้ายใน Make ให้ Scenario รอแถวใหม่
 2. เมื่อ module แสดงว่ากำลังรอข้อมูล ให้กลับไป Google Form
 3. Submit ข้อมูลทดสอบใหม่ 1 รายการ อย่าใช้แถวที่มีอยู่ก่อนเริ่ม Run once
+ตัวอย่าง
+> `Requester Name : สมชาย ใจดี
+Department : Seles
+Business Request : 	ลูกค้ารายใหญ่ไม่สามารถชำระเงินผ่านระบบได้และแจ้งว่าหากไม่สามารถแก้ไขได้ภายในวันนี้อาจยกเลิกคำสั่งซื้อ
+Required Date : วันนี้`
+
 4. กลับ Make แล้วคลิกตัวเลขใน bubble เหนือ module
 5. ขยาย `Bundle 1` และตรวจว่ามี `Row number`, `Timestamp`, `Request ID`, `Requester`, `Department` และ `Request`
 
 > `Watch New Rows` เป็น scheduled trigger ไม่ใช่ instant webhook เมื่อเปิด schedule จริงอาจมีช่วงเวลารอตาม plan ของ Make สำหรับ Workshop ใช้ `Run once` ได้
 
-💡 **Why This Matters**  Trigger ระบุว่า Workflow เริ่มเมื่อใด ส่วน agentic behavior มาจาก AI reasoning, decision และ action ที่ตามมา
-
-✅ **Checkpoint**  Make อ่านแถวที่เพิ่งมาจาก Form ได้ และเห็น `Row number`
+![Lab41](assets/Lab2-42-3.png)
 
 ⚠️ **Common Problem**  ถ้า Make ไม่พบแถว ให้กด `Run once` ก่อน Submit รายการใหม่ ตรวจชื่อ tab และ starting point อย่า Submit ซ้ำรัว ๆ
 
