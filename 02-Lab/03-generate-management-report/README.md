@@ -166,15 +166,8 @@ Current Follow-up Status: OPEN
 | Follow-up Status | `OPEN` |
 | Request ID | Request ID จาก Watch New Rows |
 
-> ถ้า Upload module ไม่คืน web-view link ให้เปิด Drive แล้ว copy restricted link มาใส่ใน Sheet ด้วยตนเองสำหรับ Workshop
 
-> 📷 **L3-09 — Update follow-up row**: ให้เห็น Row number token, Report Status, Report Link และ Follow-up Status = OPEN
-
-✅ **Checkpoint**  แถวเดิมมี report link และสถานะ OPEN โดยไม่มี response row ใหม่จาก `Update a Row`
-
-⚠️ **Common Problem**  ถ้าข้อมูลเดิมหาย แปลว่า Update a Row เขียนทั้งแถวแต่ map ค่าเดิมกลับไม่ครบ ให้ตรวจ mapping ทุก column ก่อนทดสอบรายการถัดไป
-
-## 📌 Step 8 — Optional Gmail to Self
+## 📌 Step 7 — Optional Gmail to Self
 
 ข้ามขั้นนี้ได้หาก Gmail connection ไม่พร้อม PDF + tracker ที่อัปเดตแล้วถือว่าผ่าน Lab
 
@@ -192,11 +185,9 @@ Current Follow-up Status: OPEN
 7. ถ้า attachment mapping ไม่พร้อม ให้ส่ง restricted Drive link แทน
 8. ตรวจว่า HIGH request หนึ่งรายการส่งอีเมลไม่เกินหนึ่งฉบับ
 
-> 📷 **L3-10 — Optional report email**: ให้เห็น subject, body tokens และ PDF attachment หรือ restricted link โดยปิด email address
 
-✅ **Checkpoint**  อีเมลระบุ DRAFT/Human Review และไม่มีผู้รับภายนอก
 
-## 📌 Step 9 — Save and Run the Extended Scenario Once
+## 📌 Step 8 — Save and Run the Extended Scenario Once
 
 1. กด `Save`
 2. ตรวจ Scheduling = `OFF`
@@ -211,74 +202,8 @@ Current Follow-up Status: OPEN
 11. เปิด Business Request Log แล้วตรวจแถวของ Request ID เดียวกัน
 12. ตรวจว่าไม่มี row ซ้ำ, ไม่มี PDF ของ MEDIUM/LOW และ Gmail ส่งไม่เกินหนึ่งฉบับ
 
-> 📷 **L3-11 — Complete extended scenario**: ให้เห็น flow จาก Watch New Rows → Router → HIGH report/PDF → Update Row/Gmail และ Scheduling = OFF
 
-> 📷 **L3-12 — Final PDF and tracker**: ให้เห็น PDF แบบ DRAFT และ row ของ Request ID เดียวกันที่มี Report Status/Link/Follow-up โดยปิดข้อมูลบัญชี
 
-### Final Validation Checklist
-
-- [ ] PDF ถูกสร้างเฉพาะ bundle ที่ `priority = HIGH`
-- [ ] Report และ filename ใช้ Request ID ของแถวปัจจุบัน ไม่ได้ hard-code
-- [ ] รายงานมี `DRAFT — HIGH PRIORITY — HUMAN REVIEW REQUIRED`
-- [ ] ไม่มี root cause, amount, owner, deadline หรือ SLA ที่ source ไม่ได้ให้
-- [ ] ทุก proposed action ระบุว่า pending human confirmation
-- [ ] Follow-up Status เป็น OPEN หรือ PENDING VALIDATION ไม่ใช่ RESOLVED
-- [ ] PDF เปิดได้และ permission เป็น Restricted
-- [ ] แถวเดิมถูกอัปเดตและไม่มี row ซ้ำ
-- [ ] MEDIUM/LOW route ยังทำงานเหมือน Lab 2 และไม่สร้าง PDF
-- [ ] Scenario Scheduling ยังปิด
-
-✅ **Checkpoint**  HIGH request ไหลจากการจำแนกไปถึง DRAFT PDF ใน Scenario เดียว และ Manager ยังต้องตรวจสอบก่อนดำเนินการ
-
-## Manual Document Fallback
-
-หาก Create/Download/Upload module ไม่พร้อม:
-
-1. กด Run once และ Submit HIGH request จำลองใหม่
-2. เปิด output ของ Report Gemini จาก HIGH route
-3. ตรวจ report ด้วย Final Validation Checklist
-4. Copy text ไป Google Docs ด้วยตนเอง
-5. เลือก `File` → `Download` → `PDF Document (.pdf)`
-6. Upload PDF ไป restricted folder
-7. Copy restricted link
-8. อัปเดต Report Status, Report Link และ Follow-up Status ในแถว Request ID เดียวกันด้วยตนเอง
-9. อธิบายว่าในระบบจริง Make จะ automate จุดใด
-
-Fallback ยังคง Learning Path:
-
-```text
-Router = HIGH → Situation Report → Validate → PDF → OPEN Follow-up → Human Review
-```
-
-## 💬 Discussion
-
-1. เหตุใด PDF ของ HIGH case ต้องติดป้าย DRAFT?
-2. หาก AI แต่ง owner หรือ deadline เอง จะเกิดความเสี่ยงอะไร?
-3. การใช้ bundle เดิมจาก HIGH route ลดความเสี่ยงจากการ Search ผิดแถวอย่างไร?
-4. เมื่อใดควรแยก report processing เป็น Scenario ใหม่แทนการต่อ route เดิม?
-5. เมื่อใด OPEN จึงเปลี่ยนเป็น RESOLVED และใครมีสิทธิ์เปลี่ยน?
-6. Filter ตรวจโครงสร้างได้ แต่เหตุใดจึงยังแทน Human Review ไม่ได้?
-
-## Bridge to LINE Demo and Lab 4
-
-- เมื่อเปลี่ยน Channel/Input เป็น LINE คำร้องที่ถูกตัดสินเป็น HIGH ยังเข้า report/follow-up controls เดียวกันได้
-- Lab 4 ให้ Antigravity Workspace Agent triage dataset และสร้าง draft report files สำหรับ HIGH cases ภายใน project scope โดยไม่ประกอบ Make Workflow ทีละ module
-
-ให้จดว่า Lab 2–3 ต้องกำหนด Trigger, AI step, Parser, Router, document, PDF, Drive และ tracker update เอง เพื่อนำไปเปรียบเทียบ control, repeatability และ setup effort กับ Lab 4
-
-## 🏁 Completed
-
-- [ ] เปิด Scenario ของ Lab 2 เดิมและต่อยอดเฉพาะ HIGH route
-- [ ] ใช้ข้อมูลจาก Watch New Rows/Parse JSON โดยไม่ Search หรือ hard-code Request ID
-- [ ] สร้าง Situation & Follow-up Report จาก source evidence เท่านั้น
-- [ ] ตรวจ draft ก่อนเปิดเส้นทางสร้าง PDF
-- [ ] ใช้ validation filter เป็น structural guardrail
-- [ ] สร้าง Google Document และ PDF หรือใช้ manual fallback
-- [ ] เก็บไฟล์แบบ Restricted
-- [ ] อัปเดตแถวเดิมเป็น Report Status = DRAFT และ Follow-up Status = OPEN
-- [ ] ยืนยันว่า MEDIUM/LOW ไม่สร้าง PDF
-- [ ] ส่งอีเมลถึงตนเองหรือข้าม optional delivery
-- [ ] เปิดตรวจ PDF และปิด Scenario Scheduling
 
 ---
 
