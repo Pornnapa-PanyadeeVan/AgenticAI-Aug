@@ -37,6 +37,7 @@ Recommendation
 
 ## 📌 Step 1 — ทดลอง Generative AI ก่อน
 
+เปิด [Google Gemini](https://gemini.google.com/app)
 ยังไม่ต้องใส่ System Instructions ให้ส่งข้อความนี้:
 
 ### 📋 Copy This Prompt
@@ -48,6 +49,7 @@ Recommendation
 และแจ้งว่าหากไม่สามารถแก้ไขได้ภายในวันนี้
 อาจยกเลิกคำสั่งซื้อ
 ```
+
 
 หลังได้คำตอบ ถามตัวเอง:
 
@@ -67,14 +69,15 @@ Prompt → Generate → Response
 
 ## 📌 Step 2 — เพิ่ม System Instructions
 
-1. เลือก New app
-2. ระบุตำแหน่งช่องพิมพ์ Prompt 
+Google AI Studio คือเครื่องมือบนเว็บของ Google สำหรับ ทดลองและพัฒนาแอปด้วย Gemini AI โดยไม่ต้องตั้งระบบซับซ้อน ใช้สำหรับทดลอง Prompt, ใส่ข้อความ/รูป/ไฟล์ให้ AI วิเคราะห์,ทดสอบโมเดล Gemini และนำโค้ด/API ไปต่อยอดเป็นเว็บหรือแอปได้
+
+1. เข้า [Google AI Studio](https://aistudio.google.com/
+2. เลือก New app
+3. ระบุตำแหน่งช่องพิมพ์ Prompt 
 
 เปิดพื้นที่ System Instructions แล้ว paste Prompt ด้านล่าง หรือคัดลอกจาก [prompts.md](prompts.md#system-instructions-copy-all)
 
 ![Google AI Studio start screen — ขั้นตอนสร้าง Business Request Assistant](assets/google-ai-studio-start-screen.png)
-
-![หน้าจอ Business Request Assistant](assets/business-request-assistant-interface.png)
 
 ### 📋 Copy This Prompt
 
@@ -146,6 +149,7 @@ Respond in Thai.
 
 Keep the response concise and suitable for a business manager.
 ```
+![หน้าจอ Business Request Assistant](assets/business-request-assistant-interface.png)
 
 💡 **Why This Matters**
 
@@ -160,13 +164,13 @@ Keep the response concise and suitable for a business manager.
 
 ✅ **Checkpoint**  System Instructions มี Role, Goal, 3 Priority Rules, anti-keyword rule และ output format ครบ
 
-⚠️ **Common Problem**  ถ้าไม่เห็น System Instructions อย่า paste คำสั่งถาวรรวมกับ test case โดยไม่แยก ให้ใช้ setting/panel ที่ทำหน้าที่กำหนด model behavior หรือทำตาม Instructor fallback
 
 ## 📌 Step 3 — ทดสอบ Cases
 
 ส่งทีละคำร้องในช่อง chat โดยไม่แก้ System Instructions
 
 ทำ Test 1–3 เป็น core requirement ส่วน Test 4–5 ใช้สำหรับทีมที่ไปเร็วหรืออภิปรายรวมบนจอผู้สอน
+
 
 ### 🧪 Test 1 — HIGH
 
@@ -181,6 +185,7 @@ Expected: `HIGH`
 - [ ] มี summary
 - [ ] เหตุผลกล่าวถึง customer/revenue/time impact
 - [ ] มี recommended action
+
 
 ![ผลลัพธ์การทดสอบ Test 1 — HIGH](assets/test-1-high-result.png)
 
@@ -292,8 +297,6 @@ Agent อาจตอบว่า “ควรแจ้ง Manager” แต่�
 | Priority มีค่าอื่น | ย้ำ `exactly one of HIGH, MEDIUM, LOW` |
 
 รายละเอียดเพิ่มเติม: [Troubleshooting](../troubleshooting/README.md)
-
-## 🏁 Completed
 
 
 ---
