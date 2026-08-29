@@ -114,32 +114,9 @@ Request ID
 💡 **Why This Matters**  Google Sheets ทำหน้าที่เป็น business data storage และ follow-up tracker แบบง่าย HIGH row จะส่งต่อให้ Lab 3 สร้าง Situation & Follow-up PDF ไม่ใช่ long-term production database
 
 
-## 📌 Step 3 — Create a Gemini API Key
+## 📌 Step 3 — Watch New Form Responses
 
-> ⚠️ **SECURITY: Never paste your API key into Form, Sheet, Prompt, screenshot, chat หรือ public GitHub files.**
-
-1. เปิดหน้าจัดการ API keys จาก [Google AI Studio](https://aistudio.google.com/api-keys?project=gen-lang-client-0461368862)
-2. สร้าง key สำหรับบัญชี/โปรเจกต์ของตนเองตามตัวเลือกที่หน้า UI แสดง
-3. คัดลอก key ไปใส่ใน Make connection โดยตรง
-4. ไม่ส่ง key ให้เพื่อนและไม่ใช้ shared instructor key
-5. หลัง Workshop ให้ลบ/rotate key หากไม่ใช้ต่อ
-
-> **UI MAY VARY:** บัญชีองค์กร โรงเรียน บางประเทศ หรือบาง project อาจสร้าง key ไม่ได้ ดู [Gemini API key documentation](https://ai.google.dev/gemini-api/docs/api-key)
-
-### Free-tier Safety
-
-- เลือก model ที่บัญชีระบุว่าใช้ได้ใน Free Tier
-- ไม่เปิด billing เพื่อผ่าน Workshop
-- จำกัดการทดสอบคนละ 3–5 ครั้ง
-- หากสร้าง key ไม่ได้ ไปที่ [Fallback without API](#fallback-without-api)
-
-✅ **Checkpoint**  Make connection บันทึก key แบบ secret/credential และไม่มี key ปรากฏในไฟล์หรือภาพ
-
-> 📷 **L2-05 — API key page, redacted**: ให้เห็นตำแหน่งสร้าง key แต่ปิดทับ key, project ID และ account detail ทั้งหมด
-
-## 📌 Step 4 — Watch New Form Responses
-
-### 4.1 สร้าง Scenario
+### 3.1 สร้าง Scenario
 
 1. เปิด [Make](https://www.make.com/) แล้วเข้าสู่ระบบ
 2. จากหน้า Dashboard เลือก `Scenarios`
@@ -149,7 +126,7 @@ Request ID
 
 ![Lab41](assets/Lab2-41.png)
 
-### 4.2 เพิ่ม Trigger
+### 3.2 เพิ่ม Trigger
 
 1. คลิกวงกลม `+` กลาง canvas
 2. ค้นหา `Google Sheets`
@@ -195,24 +172,20 @@ Google Sheets → Watch New Rows
 
 ⚠️ **Common Problem**  ถ้า Make ไม่พบแถว ให้กด `Run once` ก่อน Submit รายการใหม่ ตรวจชื่อ tab และ starting point อย่า Submit ซ้ำรัว ๆ
 
-## 📌 Step 5 — Analyze the Request with Gemini
+## 📌 Step 4 — Analyze the Request with Gemini
 
 📋 **Prompt**  เปิด [Business Request JSON Prompt](prompts.md#business-request-json-prompt) แล้ว map fields จาก `Watch New Rows` ตามคำอธิบาย
 
 1. คลิก `+` ด้านขวาของ `Watch New Rows`
 2. ค้นหา `Google Gemini AI`
 3. เลือก `Simple Text Prompt` หรือ text-generation action ที่ทำหน้าที่เดียวกัน
-4. ที่ Connection กด `Add` และใส่ API key เฉพาะใน credential dialog เท่านั้น
-5. ตั้งชื่อ connection เช่น `Workshop Gemini — Personal`
-6. เลือก model ที่บัญชีระบุว่าใช้ได้ใน Free Tier
-7. Copy Prompt จาก [Lab 2 Prompts](prompts.md#business-request-json-prompt) ลงช่อง Prompt
-8. วาง cursor หลัง label `Requester:` แล้วคลิก token `Requester` จาก module 1
-9. ทำแบบเดียวกันกับ `Department` และ `Request` ห้ามพิมพ์ค่าทดสอบค้างไว้แบบ hard-code
-10. กด `OK`
+4. Copy Prompt จาก [Lab 2 Prompts](prompts.md#business-request-json-prompt) ลงช่อง Prompt
+5. วาง cursor หลัง label `Requester:` แล้วคลิก token `Requester` จาก module 1
+6. ทำแบบเดียวกันกับ `Department` และ `Request` ห้ามพิมพ์ค่าทดสอบค้างไว้แบบ hard-code
+7. กด `OK`
 
-> 📷 **L2-08 — Gemini connection, redacted**: ให้เห็นชื่อ connection แต่ไม่เห็น API key หรือ account detail
-
-> 📷 **L2-09 — Gemini prompt mapping**: ให้เห็น prompt และ mapping tokens ของ Requester, Department, Request
+![Gemini5](assets/Lab2-5-1.png)
+![Output5](assets/Lab2-5-1.png)
 
 Gemini ต้องตอบ JSON object เดียวในโครงสร้างนี้:
 
@@ -231,7 +204,7 @@ Gemini ต้องตอบ JSON object เดียวในโครงสร
 
 ✅ **Checkpoint**  Raw output ไม่มีข้อความหรือ Markdown code fence ก่อน/หลัง JSON
 
-## 📌 Step 6 — Parse the JSON
+## 📌 Step 5 — Parse the JSON
 
 เพิ่ม `JSON — Parse JSON` แล้ว:
 
@@ -257,7 +230,7 @@ recommended_action
 
 > 📷 **L2-10 — JSON data structure and output**: ให้เห็นชื่อ 4 fields และ sample value โดยไม่เห็น secret
 
-## 📌 Step 7 — Complete the Router
+## 📌 Step 6 — Complete the Router
 
 1. คลิกไอคอนประแจหรือ `+` หลัง Parse JSON แล้วเลือก `Flow control` → `Router`
 2. Router จะสร้าง route แรก ให้คลิกเส้นเชื่อมเพื่อเปิด filter
@@ -291,7 +264,7 @@ priority Equal to LOW
 
 > 📷 **L2-11 — Router filters**: ให้เห็นชื่อ route, operator `Equal to` และ OR group ของ MEDIUM/LOW
 
-## 📌 Step 8 — Update the Same Row on Both Routes
+## 📌 Step 7 — Update the Same Row on Both Routes
 
 1. ที่ปลาย Route 1 กด `+` → Google Sheets → `Update a Row`
 2. เลือก connection, Spreadsheet และ Sheet เดียวกับ trigger
@@ -333,7 +306,7 @@ priority Equal to LOW
 
 ✅ **Checkpoint**  Submit Form 1 ครั้งแล้ว Sheet ยังมีเพียง 1 response row และมีผลวิเคราะห์ครบในแถวเดียวกัน
 
-## 📌 Step 9 — Send Gmail Only for HIGH
+## 📌 Step 8 — Send Gmail Only for HIGH
 
 HIGH row ที่มี `Report Status = NOT STARTED` และ `Follow-up Status = OPEN` คือ input ของ [Lab 3: HIGH Priority Situation & Follow-up PDF](../04-generate-management-report/README.md)
 
@@ -364,7 +337,7 @@ HIGH row ที่มี `Report Status = NOT STARTED` และ `Follow-up Stat
 
 ⚠️ **Common Problem**  หาก Gmail connection unavailable ให้ใช้ `Processing Status = HIGH — HUMAN REVIEW REQUIRED` เป็น alert marker ซึ่งถือว่าผ่าน Lab 2
 
-## 📌 Step 10 — Test HIGH, MEDIUM, LOW
+## 📌 Step 9 — Test HIGH, MEDIUM, LOW
 
 ใช้ [Test Requests](prompts.md#test-requests) ทีละรายการ โดยกด `Run once` ให้รอก่อนแล้วจึง Submit Form
 
@@ -406,7 +379,7 @@ HIGH row ที่มี `Report Status = NOT STARTED` และ `Follow-up Stat
 
 ✅ **Checkpoint**  HIGH, MEDIUM และ LOW เข้า route ถูกต้อง และทุก response มีผล AI ในแถวเดิม
 
-## 📌 Step 11 — Save but Do Not Activate the Schedule
+## 📌 Step 10 — Save but Do Not Activate the Schedule
 
 1. กด `Save` ให้ Scenario ล่าสุดถูกบันทึก
 2. ตรวจสวิตช์ Scheduling ว่ายังเป็น `OFF`
